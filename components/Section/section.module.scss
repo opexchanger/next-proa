@@ -1,0 +1,36 @@
+.section {
+  padding: 8rem 0;
+
+  @media (min-width: 600px) {
+    padding: 10rem 0;
+  }
+}
+
+.title,
+.subtitle {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 3.4rem;
+  line-height: 1.3;
+  margin-bottom: 0;
+
+  @media (min-width: 900px) {
+    font-size: 4rem;
+  }
+}
+
+.subtitle {
+  margin-bottom: 6rem;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.paragraph {
+  max-width: 64rem;
+  text-align: center;
+  margin-top: 4rem;
+}

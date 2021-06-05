@@ -1,0 +1,49 @@
+.experience {
+  padding-top: 8rem;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0.9)
+    ),
+    url('/img/bg-paisagem-1.jpg');
+  background-size: cover;
+  background-position: bottom right;
+  margin-top: -2.5rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.call {
+  margin-bottom: 1.5rem;
+  @media (min-width: 600px) {
+    display: flex;
+  }
+
+  &__left {
+    max-height: 350px;
+    @media (min-width: 600px) {
+      width: 49.4%;
+      margin-right: 1%;
+    }
+  }
+
+  &__right {
+    padding: 2rem 0;
+    @media (min-width: 600px) {
+      width: 49%;
+      margin-left: 1%;
+      padding: 2rem 1rem;
+    }
+  }
+
+  &__text {
+    &__title {
+      margin-bottom: 0;
+      font-size: 2.4rem;
+    }
+
+    &__description {
+      margin-bottom: 4rem;
+    }
+  }
+}

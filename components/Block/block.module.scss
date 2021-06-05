@@ -1,0 +1,45 @@
+@import '../../styles/variables';
+
+.block {
+  padding: 8rem 0;
+  color: $color-white;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  margin: 2rem 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 600px) {
+    padding: 7rem 0;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(88, 88, 88, 0.2);
+  }
+
+  &__title {
+    margin-bottom: 0;
+    z-index: 1;
+  }
+
+  &__icon {
+    margin-bottom: 1rem;
+    z-index: 1;
+  }
+}

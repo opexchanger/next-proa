@@ -1,0 +1,28 @@
+@import '../../../styles/variables';
+
+.destinations {
+  background-color: rgba(lighten($color-green, 15%), 0.8);
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 600px) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__map {
+    @media (min-width: 600px) {
+      width: 50%;
+      min-width: 50%;
+      order: 2;
+    }
+  }
+
+  &__title {
+    margin-top: 2rem;
+    text-align: left;
+  }
+}

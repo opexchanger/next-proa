@@ -1,0 +1,63 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 50%; //1 rem = 8px
+
+  @include respond(bp-600) {
+    // width >600?
+    font-size: 56.25%; //1 rem = 9px
+  }
+
+  @include respond(bp-900) {
+    // width >900?
+    font-size: 62.5%; //1 rem = 10px
+  }
+
+  // @include respond(bp-1200) {
+  //     // width >1200?
+  //     font-size: 75%; //1 rem = 12px
+  // }
+
+  @include respond(bp-1800) {
+    // width >1800?
+    font-size: 75%; //1 rem = 12px
+  }
+
+  @media (min-width: 2400px) {
+    // width >1800?
+    font-size: 80%; //1 rem = 12px
+  }
+}
+
+body {
+  font-size: 1.8rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: $color-primary;
+  letter-spacing: 0.5px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

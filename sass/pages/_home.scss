@@ -1,0 +1,189 @@
+/* ==== HERO ==== */
+.hero {
+  padding: 18rem 0 15rem 0;
+  background: url('../img/world-map.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    @media (min-width: 600px) {
+      img {
+        max-height: 240px;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 3rem;
+    line-height: 1.4;
+    margin-bottom: 4rem;
+  }
+
+  &__bottomline {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 95%;
+    transform: translateX(2.5%);
+    border-radius: 10px;
+    background-color: $color-green;
+    color: $color-white;
+  }
+
+  // um tile fica basicamente com 5rem de altura
+  &__tiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0.8rem 0;
+
+    &__tile {
+      text-transform: uppercase;
+      margin: 0 0.5rem;
+      line-height: 1.15;
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      @media (min-width: 365px) {
+        flex-direction: row;
+        text-align: left;
+      }
+
+      p {
+        margin-bottom: 0;
+
+        @media (max-width: 600px) {
+          font-size: 1.5rem;
+        }
+      }
+
+      span {
+        font-size: 1.2rem;
+        display: block;
+
+        @media (max-width: 600px) {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    &__icon {
+      height: 2.4rem;
+      margin-right: 0.5rem;
+      filter: brightness(0) invert(1);
+
+      @media (max-width: 365px) {
+        margin-bottom: 0.6rem;
+      }
+
+      @media (min-width: 435px) {
+        margin-right: 1.4rem;
+      }
+    }
+  }
+}
+
+/* ==== EXPERIENCES ==== */
+.experience {
+  padding-top: 8rem;
+  //   background: url('../img/bg-paisagem-1.jpg');
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0.9)
+    ),
+    url('../img/bg-paisagem-1.jpg');
+  background-size: cover;
+  background-position: bottom right;
+  margin-top: -2.5rem;
+}
+
+/* ==== DIFFERENCES ==== */
+.diff {
+  //   background: url('../img/bg-paisagem-3.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)),
+    url('../img/bg-paisagem-222.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding-bottom: 0;
+  color: $color-white;
+
+  &__text {
+    margin: 0 auto;
+    margin-top: 2rem;
+    max-width: 64rem;
+
+    @media (min-width: 600px) {
+      margin-top: 4rem;
+    }
+  }
+
+  &__media {
+    display: inline-block;
+    margin: 4rem auto -4.5rem auto;
+    max-height: 360px;
+    box-shadow: 0px 13px 18px -7px rgba(0, 0, 0, 0.6);
+
+    @media (min-width: 600px) {
+      margin-top: 8rem;
+    }
+  }
+}
+
+/* ==== DESTINOS ==== */
+.dest {
+  background-color: rgba(lighten($color-green, 15%), 0.8);
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 600px) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__map {
+    @media (min-width: 600px) {
+      width: 50%;
+      min-width: 50%;
+      order: 2;
+    }
+  }
+
+  &__text .block {
+    max-width: 450px;
+  }
+
+  &__title {
+    margin-top: 2rem;
+    text-align: left;
+  }
+
+  &__text {
+    text-align: left;
+  }
+
+  &__button {
+    margin-top: 2rem;
+  }
+}

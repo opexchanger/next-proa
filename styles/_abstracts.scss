@@ -1,0 +1,19 @@
+@mixin menuLinkEffect($height) {
+  position: relative;
+  &::after {
+    content: '';
+    height: $height;
+    width: 100%;
+    background-color: $color-primary;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    transition: transform 0.4s;
+    transform: scale(0);
+  }
+
+  &:hover::after,
+  &:focus::after {
+    transform: scale(0.6, 1);
+  }
+}
