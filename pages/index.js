@@ -15,11 +15,8 @@ export default function Home() {
       </Head>
 
       <Hero />
-
       <Experiences />
-
       <About />
-
       <Destinations />
     </Layout>
   );

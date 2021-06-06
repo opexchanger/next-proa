@@ -38,6 +38,13 @@
     padding-bottom: 1px;
     color: $color-primary;
     @include menuLinkEffect(4.5px);
+
+    &.current {
+      @include menuLinkEffect(4.5px);
+      &::after {
+        transform: scale(0.6, 1);
+      }
+    }
   }
 
   &__btnClose,

@@ -39,7 +39,7 @@
     &.current {
       @include menuLinkEffect(2.5px);
       &::after {
-        transform: scale(0.6);
+        transform: scale(0.6, 1);
       }
     }
   }
