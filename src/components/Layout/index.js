@@ -8,8 +8,6 @@ import utilStyles from '../../styles/utils.module.scss';
 
 export default function Layout({ children, page }) {
   const [showMenu, setShowMenu] = useState(false);
-
-  console.log(page);
   return (
     <>
       <header className={styles.header}>

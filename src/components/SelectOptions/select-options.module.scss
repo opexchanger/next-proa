@@ -1,0 +1,74 @@
+@import '../../styles//variables';
+
+.select {
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__item {
+    cursor: pointer;
+    &:not(:last-child) {
+      margin-right: 1.8rem;
+      @media (min-width: 900px) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $color-primary;
+    font-size: 1.6rem;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $color-secondary;
+    }
+
+    @media (min-width: 900px) {
+      margin-bottom: 0;
+    }
+
+    &:not(:last-child) {
+      margin-right: 1.8rem;
+    }
+
+    &.active {
+      font-weight: 700;
+
+      span {
+        background-color: $color-secondary;
+        color: $color-white;
+      }
+    }
+
+    span {
+      color: $color-secondary;
+      border: 1px solid $color-secondary;
+      padding: 0 0.4rem;
+      border-radius: 6px;
+    }
+  }
+}
+
+.primary {
+  & .select__item:not(:last-child) {
+    @media (min-width: 900px) {
+      margin-right: 3rem;
+    }
+  }
+}
+
+.secondary {
+  @media (min-width: 900px) {
+    flex-direction: column;
+  }
+
+  & .select__item {
+    @media (min-width: 900px) {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
