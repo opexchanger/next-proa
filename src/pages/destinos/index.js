@@ -23,7 +23,7 @@ regionsData.unshift({
 });
 
 export default function Destinos() {
-  const [selectedRegion, setSelectedRegion] = useState(0);
+  const [selectedRegion, setSelectedRegion] = useState(regionsData[0]);
   const [selectedCountry, setSelectedCountry] = useState(0);
 
   const setRegion = (region) => {
@@ -32,27 +32,20 @@ export default function Destinos() {
   };
 
   const filterCountries = () => {
-    if (selectedRegion === 0) {
+    if (selectedRegion.id === 0) {
       return countriesData;
     }
-    return countriesData.filter((country) => country.regionId === selectedRegion);
+    return countriesData.filter((country) => country.regionId === selectedRegion.id);
   };
 
   const filterDestinos = () => {
-    if (selectedRegion === 0 && selectedCountry === 0) {
+    if (selectedRegion.id === 0 && selectedCountry === 0) {
       return destinosData;
     }
     if (selectedCountry !== 0) {
-      return destinosData.filter((destino) => destino.countryId === selectedCountry);
+      return destinosData.filter((destino) => destino.countryId === selectedCountry.id);
     }
-    return destinosData.filter((destino) => destino.regionId === selectedRegion);
-  };
-
-  const regionName = () => {
-    if (selectedRegion === 0) {
-      return 'todas';
-    }
-    return regionsData.filter((region) => region.id === selectedRegion)[0].name;
+    return destinosData.filter((destino) => destino.regionId === selectedRegion.id);
   };
 
   return (
@@ -73,7 +66,7 @@ export default function Destinos() {
             <SelectOptions
               primary
               options={regionsData}
-              selected={selectedRegion}
+              selected={selectedRegion.id}
               handleClick={setRegion}
             />
           </div>
@@ -82,18 +75,18 @@ export default function Destinos() {
         <div className={utilStyles.container}>
           <div className={styles.selectedGrid}>
             <aside className={[styles.select, styles.selectSecondary].join(' ')}>
-              <h2 className={styles.select__title}>Exibindo {regionName()}</h2>
+              <h2 className={styles.select__title}>Exibindo {selectedRegion.name}</h2>
               <SelectOptions
                 secondary
                 options={filterCountries()}
-                selected={selectedCountry}
+                selected={selectedCountry.id}
                 handleClick={setSelectedCountry}
               />
             </aside>
 
             <main className={styles.selecionado}>
               <h2 className={[styles.selecionado__title, utilStyles.mbottom0].join(' ')}>
-                Lugar selecionado
+                {selectedCountry.name || selectedRegion.name}
               </h2>
               <p className={styles.selecionado__subtitle}>
                 Consectetur adipisicing elit. Hic!

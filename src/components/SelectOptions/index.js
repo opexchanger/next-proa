@@ -15,17 +15,17 @@ export default function SelectOptions({
         `}
       {...restProps}
     >
-      {options.map(({ id, name, count }) => (
-        <li
-          key={`${id}-${name}`}
-          className={styles.select__item}
-          onClick={() => handleClick(id)}
-        >
-          <p className={`${styles.select__link} ${id === selected ? styles.active : ''}`}>
-            {name} <span>{count}</span>
-          </p>
-        </li>
-      ))}
+      {options.map((option) => {
+        const { id, name, count } = option;
+
+        return (
+          <li key={id} className={styles.select__item} onClick={() => handleClick(option)}>
+            <p className={`${styles.select__link} ${id === selected ? styles.active : ''}`}>
+              {name} <span>{count}</span>
+            </p>
+          </li>
+        );
+      })}
     </ul>
   );
 }
