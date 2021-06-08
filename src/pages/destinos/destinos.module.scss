@@ -113,8 +113,9 @@
   &Secondary {
     margin-bottom: 4rem;
     @media (min-width: 900px) {
-      margin-bottom: 0;
+      padding-bottom: 5rem;
       max-width: 255px;
+      align-self: flex-start;
     }
 
     & .select__options {

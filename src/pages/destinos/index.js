@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Head from 'next/head';
 import Link from 'next/link';
@@ -11,46 +11,48 @@ import SelectOptions from '../../components/SelectOptions';
 import styles from './destinos.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
 
-import destinos from '../../data/destinos';
+import destinosData from '../../data/destinos';
 import regionsData from '../../data/regions';
 import countriesData from '../../data/countries';
 
 // fazer isso aqui dentro do getStaticProps
 regionsData.unshift({
   id: 0,
-  name: 'Todos',
+  name: 'Todas',
   count: regionsData.reduce((sum, current) => sum + current.count, 0),
 });
-
-const filterOptions = (options, filter) => {
-  if (filter === 0) {
-    return options;
-  }
-  return options.filter((option) => option.regionId === filter);
-};
 
 export default function Destinos() {
   const [selectedRegion, setSelectedRegion] = useState(0);
   const [selectedCountry, setSelectedCountry] = useState(0);
 
   const setRegion = (region) => {
-    // quando seleciona por região, desmarca os países
     setSelectedCountry(0);
     setSelectedRegion(region);
   };
 
-  // filta as opções de destinos exibidas
-  const filterDestinos = (destinos) => {
-    // se não tem nenhum selecionado (ou ta no 'todos') retorna tudo
+  const filterCountries = () => {
+    if (selectedRegion === 0) {
+      return countriesData;
+    }
+    return countriesData.filter((country) => country.regionId === selectedRegion);
+  };
+
+  const filterDestinos = () => {
     if (selectedRegion === 0 && selectedCountry === 0) {
-      return destinos;
+      return destinosData;
     }
-    // primeiro testa o país pq região tb continua selecionada ao msm tempo
     if (selectedCountry !== 0) {
-      return destinos.filter((destino) => destino.countryId === selectedCountry);
+      return destinosData.filter((destino) => destino.countryId === selectedCountry);
     }
-    // por último a região pq só vai filtrar por ela se não tiver nenhum país selecionado
-    return destinos.filter((destino) => destino.regionId === selectedRegion);
+    return destinosData.filter((destino) => destino.regionId === selectedRegion);
+  };
+
+  const regionName = () => {
+    if (selectedRegion === 0) {
+      return 'todas';
+    }
+    return regionsData.filter((region) => region.id === selectedRegion)[0].name;
   };
 
   return (
@@ -80,10 +82,10 @@ export default function Destinos() {
         <div className={utilStyles.container}>
           <div className={styles.selectedGrid}>
             <aside className={[styles.select, styles.selectSecondary].join(' ')}>
-              <h2 className={styles.select__title}>Região selecionada</h2>
+              <h2 className={styles.select__title}>Exibindo {regionName()}</h2>
               <SelectOptions
                 secondary
-                options={filterOptions(countriesData, selectedRegion)}
+                options={filterCountries()}
                 selected={selectedCountry}
                 handleClick={setSelectedCountry}
               />
@@ -96,7 +98,7 @@ export default function Destinos() {
               <p className={styles.selecionado__subtitle}>
                 Consectetur adipisicing elit. Hic!
               </p>
-              <BlocksGrid blocks={filterDestinos(destinos)} />
+              <BlocksGrid blocks={filterDestinos()} />
             </main>
           </div>
         </div>
