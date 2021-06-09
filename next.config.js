@@ -9,4 +9,5 @@ module.exports = withNextPluginPreval({
   images: {
     domains: ['cdn.sanity.io'],
   },
+  target: 'serverless',
 });
