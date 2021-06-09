@@ -1,13 +1,14 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import BlockContent from '@sanity/block-content-to-react';
+import { useNextSanityImage } from 'next-sanity-image';
 
 import Layout from '../../components/Layout';
 import DesktopNavigation from '../../components/DesktopNavigation';
 import Button from '../../components/Button';
 
+import client from '../../sanity/client';
 import { getAllTravels, getOneTravel } from '../../sanity/fetch';
-import { urlFor } from '../../sanity/imageUrl';
 import { imageSeralizer } from '../../sanity/serializers';
 
 import styles from './viagem.module.scss';
@@ -16,6 +17,8 @@ import Link from 'next/link';
 
 export default function Viagem({ viagem }) {
   const { title, coverImage, regionName, subRegionName, content } = viagem;
+  const imageProps = useNextSanityImage(client, coverImage);
+
   return (
     <Layout>
       <Head>
@@ -30,7 +33,8 @@ export default function Viagem({ viagem }) {
           </a>
         </Link>
         <Image
-          src={urlFor(coverImage).width(1900).height(700).url()}
+          src={imageProps.src}
+          loader={imageProps.loader}
           layout='fill'
           objectFit='cover'
           objectPosition='center'
