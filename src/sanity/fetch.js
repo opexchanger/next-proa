@@ -56,8 +56,11 @@ export const getOneTravel = async (slug) => {
         "slug": slug.current,
         content,
         "regionId": region->_id,
+        "regionName": region->name,
         "subRegionId": subRegion->_id,
-      }`,
+        "subRegionName": subRegion->name,
+      }
+    `,
     { slug }
   );
 

@@ -13,7 +13,7 @@ export default function Layout({ children, page }) {
       <header className={styles.header}>
         {/* botão abrir menu do mobile */}
         <button
-          aria-label="Abrir o menu"
+          aria-label='Abrir o menu'
           className={styles.nav__btnOpen}
           onClick={() => setShowMenu(true)}
         >
@@ -23,12 +23,14 @@ export default function Layout({ children, page }) {
         {/* menu do mobile */}
         <nav
           className={`${
-            showMenu ? [styles.nav, styles.navigationOpen].join(' ') : styles.nav
+            showMenu
+              ? [styles.nav, styles.navigationOpen].join(' ')
+              : styles.nav
           }`}
         >
           {/* botão fechar menu do mobile */}
           <button
-            aria-label="Fechar o menu"
+            aria-label='Fechar o menu'
             className={styles.nav__btnClose}
             onClick={() => setShowMenu(false)}
           >
@@ -38,7 +40,7 @@ export default function Layout({ children, page }) {
           {/* itens do menu */}
           <ul className={styles.nav__list}>
             <li className={styles.nav__item}>
-              <Link href="/">
+              <Link href='/'>
                 <a
                   className={`${
                     page === 'home'
@@ -51,7 +53,7 @@ export default function Layout({ children, page }) {
               </Link>
             </li>
             <li className={styles.nav__item}>
-              <Link href="/destinos">
+              <Link href='/destinos'>
                 <a
                   className={`${
                     page === 'destinos'
@@ -64,7 +66,7 @@ export default function Layout({ children, page }) {
               </Link>
             </li>
             <li className={styles.nav__item}>
-              <Link href="/">
+              <Link href='/'>
                 <a
                   className={`${
                     page === 'roteiros'
@@ -85,14 +87,19 @@ export default function Layout({ children, page }) {
 
         <Section addClasses={[utilStyles.section, styles.expert]}>
           <div className={utilStyles.container}>
-            <img src="img/expert-fake.jpg" alt="Expert" className={styles.expert__img} />
+            <img
+              src='/img/expert-fake.jpg'
+              alt='Expert'
+              className={styles.expert__img}
+            />
             <Section.Title>Entre em contato com a guia</Section.Title>
             <div className={utilStyles.contentCenter}>
               <Section.Paragraph>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, incidunt
-                dolor vel dolorem sint odio voluptatibus at aut nisi numquam magnam optio
-                facilis porro excepturi repudiandae deleniti quidem eligendi? Eum impedit
-                dolorum, assumenda atque harum aliquam aperiam omnis a incidunt.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Distinctio, incidunt dolor vel dolorem sint odio voluptatibus at
+                aut nisi numquam magnam optio facilis porro excepturi
+                repudiandae deleniti quidem eligendi? Eum impedit dolorum,
+                assumenda atque harum aliquam aperiam omnis a incidunt.
               </Section.Paragraph>
               <div className={styles.contact}>
                 <div className={styles.contact__icon}>
