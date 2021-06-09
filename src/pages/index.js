@@ -8,10 +8,10 @@ import Destinations from '../components/Home/Destinations';
 
 export default function Home() {
   return (
-    <Layout page="home">
+    <Layout page='home'>
       <Head>
         <title>Proa Viagens | Página Inicial</title>
-        <meta name="description" content="Proa Agência de Viagens" />
+        <meta name='description' content='Proa Agência de Viagens' />
       </Head>
 
       <Hero />

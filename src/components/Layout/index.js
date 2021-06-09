@@ -86,7 +86,7 @@ export default function Layout({ children, page }) {
         <Section addClasses={[utilStyles.section, styles.expert]}>
           <div className={utilStyles.container}>
             <img src="img/expert-fake.jpg" alt="Expert" className={styles.expert__img} />
-            <Section.Title>Lorem ipsum dolor sit amet.</Section.Title>
+            <Section.Title>Entre em contato com a guia</Section.Title>
             <div className={utilStyles.contentCenter}>
               <Section.Paragraph>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, incidunt
