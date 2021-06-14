@@ -1,0 +1,56 @@
+@import '../../styles/variables';
+@import '../../styles/abstracts';
+
+.badge {
+  border: 2px solid $color-primary;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  padding-top: 1rem;
+  background-color: transparent;
+  font-size: 2rem;
+  text-align: center;
+  // TODO test if gap
+  // margin-right: 2rem;
+  // margin-bottom: 2rem;
+  max-width: 94px;
+  width: 94px;
+
+  display: flex;
+  flex-direction: column;
+
+  span {
+    background-color: $color-yellow;
+    border-radius: 15px;
+    padding: 0.6rem 1rem;
+    font-weight: 700;
+
+    max-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > img {
+      align-self: baseline;
+      @include imgFit;
+      object-fit: contain;
+    }
+  }
+
+  .containIcon {
+    padding: 0.2rem 0;
+  }
+
+  .text {
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+    line-height: 1;
+
+    & > * {
+      margin: 0;
+    }
+
+    & > p {
+      font-size: 1.8rem;
+    }
+  }
+}
