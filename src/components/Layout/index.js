@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import Section from '../Section';
+import pagesList from '../../data/pagesList';
 
 import styles from './layout.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
@@ -22,11 +23,10 @@ export default function Layout({ children, page }) {
 
         {/* menu do mobile */}
         <nav
-          className={`${
-            showMenu
-              ? [styles.nav, styles.navigationOpen].join(' ')
-              : styles.nav
-          }`}
+          className={`${showMenu
+            ? [styles.nav, styles.navigationOpen].join(' ')
+            : styles.nav
+            }`}
         >
           {/* botão fechar menu do mobile */}
           <button
@@ -39,45 +39,20 @@ export default function Layout({ children, page }) {
 
           {/* itens do menu */}
           <ul className={styles.nav__list}>
-            <li className={styles.nav__item}>
-              <Link href='/'>
-                <a
-                  className={`${
-                    page === 'home'
+            {pagesList.map(({ name, title, url }) => (
+              <li key={name} className={styles.nav__item}>
+                <Link href={url}>
+                  <a
+                    className={`${page === name
                       ? [styles.nav__link, styles.current].join(' ')
                       : styles.nav__link
-                  }`}
-                >
-                  Home
-                </a>
-              </Link>
-            </li>
-            <li className={styles.nav__item}>
-              <Link href='/destinos'>
-                <a
-                  className={`${
-                    page === 'destinos'
-                      ? [styles.nav__link, styles.current].join(' ')
-                      : styles.nav__link
-                  }`}
-                >
-                  Destinos
-                </a>
-              </Link>
-            </li>
-            <li className={styles.nav__item}>
-              <Link href='/'>
-                <a
-                  className={`${
-                    page === 'roteiros'
-                      ? [styles.nav__link, styles.current].join(' ')
-                      : styles.nav__link
-                  }`}
-                >
-                  Roteiros
-                </a>
-              </Link>
-            </li>
+                      }`}
+                  >
+                    {title}
+                  </a>
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </header>

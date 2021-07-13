@@ -38,8 +38,8 @@ export const getAllTravels = async () => {
       title,
       "slug": slug.current,
       coverImage,
-      "regionId": region->_id,
       "subRegionId": subRegion->_id,
+      "regionId": subRegion -> region -> _id,
     }
   `);
 
@@ -67,10 +67,10 @@ export const getOneTravel = async (slug) => {
         childFree,
         hasCortesy,
         cortesy,
-        "regionId": region->_id,
-        "regionName": region->name,
         "subRegionId": subRegion->_id,
         "subRegionName": subRegion->name,
+  			"regionId": subRegion -> region -> _id,
+  			"regionName": subRegion -> region -> name
       }
     `,
     { slug }

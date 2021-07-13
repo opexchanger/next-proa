@@ -3,10 +3,7 @@ import Section from '../../Section';
 
 import styles from './experiences.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
-import Blocks from '../../BlocksGrid';
 import BlocksGrid from '../../BlocksGrid';
-
-import blocks from '../../../data/blocks';
 
 export default function Hero() {
   return (
@@ -35,7 +32,7 @@ export default function Hero() {
             </Button>
           </div>
         </div>
-        <BlocksGrid blocks={blocks} />
+        {/* <BlocksGrid blocks={blocks} /> */}
       </div>
     </Section>
   );
