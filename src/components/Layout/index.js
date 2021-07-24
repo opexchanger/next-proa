@@ -1,60 +1,15 @@
-import { useState } from 'react';
-import Link from 'next/link';
-
 import Section from '../Section';
-import pagesList from '../../data/pagesList';
+import { DesktopNavigation, MobileNavigation } from '../Navigation';
 
 import styles from './layout.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
 
 export default function Layout({ children, page }) {
-  const [showMenu, setShowMenu] = useState(false);
   return (
     <>
       <header className={styles.header}>
-        {/* botão abrir menu do mobile */}
-        <button
-          aria-label='Abrir o menu'
-          className={styles.nav__btnOpen}
-          onClick={() => setShowMenu(true)}
-        >
-          &#9776;
-        </button>
-
-        {/* menu do mobile */}
-        <nav
-          className={`${showMenu
-            ? [styles.nav, styles.navigationOpen].join(' ')
-            : styles.nav
-            }`}
-        >
-          {/* botão fechar menu do mobile */}
-          <button
-            aria-label='Fechar o menu'
-            className={styles.nav__btnClose}
-            onClick={() => setShowMenu(false)}
-          >
-            &times;
-          </button>
-
-          {/* itens do menu */}
-          <ul className={styles.nav__list}>
-            {pagesList.map(({ name, title, url }) => (
-              <li key={name} className={styles.nav__item}>
-                <Link href={url}>
-                  <a
-                    className={`${page === name
-                      ? [styles.nav__link, styles.current].join(' ')
-                      : styles.nav__link
-                      }`}
-                  >
-                    {title}
-                  </a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <MobileNavigation page={page} />
+        <DesktopNavigation page={page} />
       </header>
 
       <main>

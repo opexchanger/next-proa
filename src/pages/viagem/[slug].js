@@ -4,11 +4,10 @@ import BlockContent from '@sanity/block-content-to-react';
 import { format, intervalToDuration } from 'date-fns';
 
 import Layout from '../../components/Layout';
-import DesktopNavigation from '../../components/DesktopNavigation';
 import Button from '../../components/Button';
 import Badge from '../../components/Badge';
 
-import { getAllTravels, getOneTravel } from '../../sanity/fetch';
+import { getOneTravel } from '../../sanity/fetch';
 import { urlFor } from '../../sanity/imageUrl';
 import { imageSeralizer } from '../../sanity/serializers';
 
@@ -40,7 +39,6 @@ export default function Viagem({ viagem }) {
       </Head>
 
       <header className={styles.header}>
-        <DesktopNavigation />
         <Image
           src={urlFor(coverImage).width(1900).height(500).url()}
           layout='fill'
@@ -132,8 +130,6 @@ export async function getServerSideProps({ params }) {
   }).days;
   viagem.departureDate = format(new Date(viagem.departureDate), 'dd/MM');
   viagem.returnDate = format(new Date(viagem.returnDate), 'dd/MM');
-
-  console.log(viagem);
 
   return {
     props: {

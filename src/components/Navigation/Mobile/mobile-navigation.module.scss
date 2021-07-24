@@ -1,0 +1,72 @@
+@import '../../../styles/variables';
+@import '../../../styles/abstracts';
+
+.nav {
+  position: fixed;
+  background: $color-white;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 100%;
+  transform: translateX(0);
+  transition: transform 250ms;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__list {
+    display: flex;
+    height: 50%;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 3rem;
+    font-weight: 700;
+    padding-bottom: 1px;
+    color: $color-primary;
+    @include menuLinkEffect(4.5px);
+
+    &.current {
+      @include menuLinkEffect(4.5px);
+      &::after {
+        transform: scale(0.6, 1);
+      }
+    }
+  }
+
+  &__btnClose,
+  &__btnOpen {
+    border: 0;
+    background: 0;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 4rem;
+    color: $color-primary;
+
+    left: 0;
+    top: 0;
+  }
+
+  &__btnClose {
+    position: absolute;
+    padding: 1rem 2.4rem;
+    font-size: 5rem;
+  }
+
+  &__btnOpen {
+    padding: 1rem 1.5rem;
+    color: #fff;
+    background-color: #0c2940;
+    position: fixed;
+  }
+}
+
+.navigationOpen {
+  transform: translateX(-100%);
+}

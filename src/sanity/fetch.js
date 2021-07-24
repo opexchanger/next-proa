@@ -37,6 +37,7 @@ export const getAllTravels = async () => {
       "id": _id,
       title,
       "slug": slug.current,
+      "categorySlug": category -> slug.current,
       coverImage,
       "subRegionId": subRegion->_id,
       "regionId": subRegion -> region -> _id,
@@ -46,12 +47,26 @@ export const getAllTravels = async () => {
   return travels;
 };
 
+export const getCategories = async () => {
+  const categories = await client.fetch(`
+    *[ _type == "category" ] {
+      "id": _id,
+      title,
+      description,
+      "slug": slug.current
+    }
+  `);
+
+  return categories;
+};
+
 export const getOneTravel = async (slug) => {
   const travel = await client.fetch(
     `
       *[ _type == "travel" && slug.current == $slug] {
         title,
         "slug": slug.current,
+        type,
         coverImage,
         content,
         price,

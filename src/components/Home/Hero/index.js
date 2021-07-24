@@ -1,5 +1,4 @@
 import Button from '../../Button';
-import DesktopNavigation from '../../DesktopNavigation';
 
 import styles from './hero.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
@@ -7,7 +6,6 @@ import utilStyles from '../../../styles/utils.module.scss';
 export default function Hero() {
   return (
     <section className={styles.hero}>
-      <DesktopNavigation page="home" />
       <div className={utilStyles.container}>
         <div className={styles.hero__content}>
           <picture className={styles.hero__logo}>
