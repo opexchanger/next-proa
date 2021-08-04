@@ -1,0 +1,47 @@
+@import "../../styles/variables";
+
+.bgWrapper {
+  background-color: rgba($color-primary, 0.6);
+  backdrop-filter: blur(3px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  
+  overflow-y: scroll;
+  padding: 2rem 0;
+}
+
+.modal {
+  background-color: $color-white;
+  border: 1px solid $color-black;
+  border-radius: 5px;
+  margin: 2rem auto;
+  width: 95%;
+  max-width: 580px;
+
+  @media screen and (min-width: 1600px) {
+    max-width: 750px;
+  }
+  
+  &__title {
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  &__btn {
+    border: 0;
+    padding: 4px 8px;
+    margin: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  &__content {
+    padding: 1rem 1.8rem;
+    padding-top: 0;
+    font-size: 2rem;
+  }
+}

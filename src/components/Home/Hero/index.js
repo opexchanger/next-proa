@@ -1,9 +1,12 @@
-import Button from '../../Button';
+import { Button } from '../../Buttons';
+import { useModal } from '../../../context/modalContext';
 
 import styles from './hero.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
 
 export default function Hero() {
+  const { setHomePageModal } = useModal();
+
   return (
     <section className={styles.hero}>
       <div className={utilStyles.container}>
@@ -13,7 +16,7 @@ export default function Hero() {
             <img srcSet="/img/logo-proa.webp" alt="Logo" />
           </picture>
           <h1 className={styles.hero__title}>A frase chamativa da Proa Viagens</h1>
-          <Button to="/" cta>
+          <Button type='cta' onClick={() => setHomePageModal(true)} >
             Agende agora
           </Button>
         </div>

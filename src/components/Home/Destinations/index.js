@@ -1,6 +1,6 @@
 import Section from '../../Section';
 import Block from '../../Block';
-import Button from '../../Button';
+import { ButtonLink } from '../../Buttons';
 
 import styles from './destinations.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
@@ -45,9 +45,9 @@ export default function Destinations() {
             );
           })}
 
-          <Button to='/destinos' style={{ marginTop: '2rem' }}>
+          <ButtonLink to='/destinos' style={{ marginTop: '2rem' }}>
             Veja todos os destinos
-          </Button>
+          </ButtonLink>
         </div>
       </div>
     </Section>

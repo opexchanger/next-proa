@@ -1,14 +1,14 @@
 import regions from '../../../data/regions.preval';
 import { useSelection } from '../../../context/selectionContext';
 
-export default function useSelectRegion() {
+export default function getSelectRegion() {
   const { setSelectedRegion } = useSelection();
 
-  return function (regionId, callback) {
+  return function bindToRegion(regionId) {
     const selection = regionId ? regions.find((r) => r.id === regionId) : regionId;
+
     return function () {
       setSelectedRegion(selection);
-      callback && callback();
     }
   }
 }

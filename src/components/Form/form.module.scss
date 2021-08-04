@@ -1,0 +1,30 @@
+@import '../../styles/variables';
+
+.form {
+  
+  &__input {
+    font-family: inherit;
+    display: block;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 1.8rem;
+    font-size: 1.6rem;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid $color-primary;
+
+    &Half {
+      display: inline-block;
+      width: 49%;
+
+      &:first-child {
+        margin-right: 2%;
+      }
+    }
+  }
+
+  label {
+    font-size: 1.5rem;
+    display: block;
+    margin-top: -5px;
+  }
+}

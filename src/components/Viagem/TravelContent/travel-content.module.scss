@@ -1,0 +1,65 @@
+.content {
+  display: grid;
+  gap: 12px;
+
+  max-width: 750px;
+  margin: 4rem auto;
+  letter-spacing: 0.8px;
+  line-height: 1.7;
+  h2 {
+    font-size: 3rem;
+  }
+  h3 {
+    font-size: 2.4rem;
+  }
+  h4 {
+    font-size: 1.8rem;
+  }
+  h5 {
+    font-size: 1.4rem;
+  }
+  h6 {
+    font-size: 1.2rem;
+  }
+  p {
+    text-align: justify;
+    text-indent: 40px;
+  }
+  a {
+    color: #0000ff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  ul,
+  ol {
+    list-style-position: inside;
+    li {
+      text-align: justify;
+      text-indent: 40px;
+      line-height: 1.5;
+    }
+  }
+  ul {
+    list-style-type: circle;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  figure {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    img {
+      width: 100%;
+      max-width: 480px;
+    }
+    figcaption {
+      width: 100%;
+      max-width: 480px;
+      font-size: 12px;
+      font-style: italic;
+      text-align: center;
+    }
+  }
+}

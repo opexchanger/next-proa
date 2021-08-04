@@ -1,5 +1,5 @@
-import Button from '../../Button';
 import Section from '../../Section';
+import { ButtonLink } from '../../Buttons';
 
 import styles from './experiences.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
@@ -27,9 +27,9 @@ export default function Hero() {
                 accusamus quod minima, impedit quidem sunt.
               </p>
             </div>
-            <Button to="/" block>
+            <ButtonLink to="/" type='block'>
               Clique para saber mais
-            </Button>
+            </ButtonLink>
           </div>
         </div>
         {/* <BlocksGrid blocks={blocks} /> */}

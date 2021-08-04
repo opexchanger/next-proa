@@ -11,6 +11,7 @@
   left: 100%;
   transform: translateX(0);
   transition: transform 250ms;
+  z-index: 3;
 
   display: flex;
   justify-content: center;
