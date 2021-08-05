@@ -40,13 +40,14 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
   // TODO fazer os menus enviarem já o allRegions?
   useEffect(() => {
     if (!selectedRegion) {
-      setRegion(allRegions);
+      setSelectedRegion(allRegions);
     }
   }, [selectedRegion]);
 
   useEffect(() => {
     setLoader(false);
     Router.events.on("routeChangeStart", () => {
+      setSelectedSubRegion(0);
       setLoader(true);
     });
 

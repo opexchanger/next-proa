@@ -1,18 +1,21 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import pagesList from '../../../data/pagesList';
 import getSelectRegion from '../utils/getSelectRegion';
+import { btnVariants, liVariants, navVariants, ulVariants } from './animationVariants';
+import runMultiple from '../../../utils/runMultiple';
 
 import styles from './mobile-navigation.module.scss';
 
 export default function MobileNavigation({ page }) {
   const [showMenu, setShowMenu] = useState(false);
-  const getFunctionToSelectThisRegion = getSelectRegion();
+  const bindClickToRegion = getSelectRegion();
 
   // TODO esse componente roda toda vez que menu abre, aplicar memo
   return (
-    <>
+    <AnimatePresence>
       {/* botão abrir menu do mobile */}
       <button
         aria-label='Abrir o menu'
@@ -23,29 +26,35 @@ export default function MobileNavigation({ page }) {
       </button>
 
       {/* menu do mobile */}
-      <nav
-        className={`${showMenu
-          ? [styles.nav, styles.navigationOpen].join(' ')
-          : styles.nav
-          }`}
+      <motion.nav key="nav" className={styles.nav}
+        variants={navVariants}
+        initial="closed"
+        animate={showMenu ? "open" : "closed"}
+        transition={{ stiffness: 100 }}
       >
         {/* botão fechar menu do mobile */}
-        <button
+        <motion.button key="button"
           aria-label='Fechar o menu'
           className={styles.nav__btnClose}
           onClick={() => setShowMenu(false)}
+          variants={btnVariants}
+          transition={{ delay: 0.3 }}
         >
           &times;
-        </button>
+        </motion.button>
 
         {/* itens do menu */}
-        <ul className={styles.nav__list}>
+        <motion.ul key="ul" className={styles.nav__list}
+          variants={ulVariants}
+        >
           {pagesList.map(({ name, title, url, selectRegion }) => {
             let selection = selectRegion ? selectRegion : 0;
-            const handleClick = getFunctionToSelectThisRegion(selection, () => setShowMenu(false));
+            const handleClick = runMultiple(bindClickToRegion(selection), () => setShowMenu(false));
 
             return (
-              <li key={name} className={styles.nav__item}>
+              <motion.li key={name} className={styles.nav__item}
+                variants={liVariants}
+              >
                 <Link href={url}>
                   <a
                     className={`${page === name
@@ -57,11 +66,11 @@ export default function MobileNavigation({ page }) {
                     {title}
                   </a>
                 </Link>
-              </li>
+              </motion.li>
             )
           })}
-        </ul>
-      </nav>
-    </>
+        </motion.ul>
+      </motion.nav>
+    </AnimatePresence>
   )
 }
