@@ -38,7 +38,7 @@ export default function MobileNavigation({ page }) {
           className={styles.nav__btnClose}
           onClick={() => setShowMenu(false)}
           variants={btnVariants}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.5, duration: 0.3 }}
         >
           &times;
         </motion.button>

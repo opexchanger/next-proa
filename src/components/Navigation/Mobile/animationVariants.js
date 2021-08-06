@@ -4,14 +4,14 @@ export const navVariants = {
 }
 
 export const btnVariants = {
-  closed: { opacity: 0, y: "-100%" },
-  open: { opacity: 1, y: 0 },
+  closed: { opacity: 0, },
+  open: { opacity: 1, rotate: [0, 360] },
 }
 
 export const ulVariants = {
   open: {
     transition: {
-      staggerChildren: 0.3,
+      staggerChildren: 0.1,
       delayChildren: 0.3
     }
   },
@@ -20,5 +20,5 @@ export const ulVariants = {
 
 export const liVariants = {
   closed: { x: "100%", opacity: 0 },
-  open: { x: 0, opacity: 1 }
+  open: { x: 0, opacity: 1 },
 }
