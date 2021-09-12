@@ -1,11 +1,11 @@
 import styles from './button-submit.module.scss';
 
-export default function ButtonSubmit({ type, children, ...restProps }) {
+export default function ButtonSubmit({ mode, children, ...restProps }) {
   return (
     <button
       className={`
         ${styles.btn}
-        ${type === 'whats' ? styles.btnWhatsapp : type === 'email' ? styles.btnEmail : false}
+        ${mode === 'whatsapp' ? styles.btnWhatsapp : mode === 'email' ? styles.btnEmail : false}
       `}
       {...restProps}
     >

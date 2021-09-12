@@ -37,6 +37,14 @@
   color: $color-primary;
 }
 
+@mixin btnHover {
+  -webkit-transform: scaleX(1.04) translate3d( 0, 0, 0) perspective(1px);
+  -moz-transform: scaleX(1.04) translate3d( 0, 0, 0) perspective(1px);
+  -o-transform: scaleX(1.04) translate3d( 0, 0, 0) perspective(1px);
+  -ms-transform: scaleX(1.04) translate3d( 0, 0, 0) perspective(1px);
+  transform: scaleX(1.04) translate3d( 0, 0, 0) perspective(1px);
+}
+
 @mixin noFlickr {
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);

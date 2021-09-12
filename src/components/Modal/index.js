@@ -1,10 +1,16 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
 
 import { bgVariants, modalVariants } from './animationVariants';
 
 import styles from './modal.module.scss';
 
 export default function Modal({ title, showModal, setShowModal, children }) {
+
+  useEffect(() => {
+    showModal ? document.body.style.overflowY = "hidden" : document.body.style.overflowY = "scroll";
+  });
+
   return (
     <AnimatePresence>
       {showModal &&

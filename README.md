@@ -57,3 +57,9 @@ De início ficou feio isso aí, mas agora até que ta bonitinha. Eu só realment
 
 #### Montando componente muitas vezes
 Toda vez que eu abro o menu mobile, ele roda todo render dele, que envolve map do menuData, setar as funções onClick e todas coisaradas, que não vão ser diferentes nunca no decorrer do app, então pra ela seria um bom caso imagino do Hook Memo.
+
+//
+[[redirects]]
+  from= "/api/*"
+  to= "/.netlify/functions/:splat"
+  status= 200

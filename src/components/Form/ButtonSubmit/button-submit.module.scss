@@ -62,11 +62,7 @@
     }
 
     &:hover {
-      -webkit-transform: scaleX(1.025) translate3d( 0, 0, 0) perspective(1px);
-          -moz-transform: scaleX(1.025) translate3d( 0, 0, 0) perspective(1px);
-            -o-transform: scaleX(1.025) translate3d( 0, 0, 0) perspective(1px);
-          -ms-transform: scaleX(1.025) translate3d( 0, 0, 0) perspective(1px);
-              transform: scaleX(1.025) translate3d( 0, 0, 0) perspective(1px);
+      @include btnHover;
     }
   }
 }

@@ -56,3 +56,17 @@ h4,
 p {
   margin-top: 0;
 }
+
+button:disabled,
+button[disabled]{
+
+  &::before {
+    opacity: 0.25;
+  }
+
+  &:hover {
+    transform: none;
+  }
+
+  cursor: not-allowed;
+}

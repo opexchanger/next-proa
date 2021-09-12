@@ -31,7 +31,7 @@ export default function Viagem({ viagem }) {
 
         <Hero coverImage={coverImage} title={title} regionName={regionName} subRegionName={subRegionName} />
 
-        <BuyModal />
+        <BuyModal travel={viagem} />
 
         <section className={styles.destino__body}>
           <div className={styles.container}>
