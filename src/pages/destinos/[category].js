@@ -6,10 +6,9 @@ import { Router } from 'next/router';
 import Layout from '../../components/Layout';
 import BlocksGrid from '../../components/BlocksGrid';
 import SelectOptions from '../../components/SelectOptions';
+import FullLoader from '../../components/Loaders/FullLoader';
+import { useSelection } from '../../context/selectionContext';
 
-// styles
-import styles from './destinos.module.scss';
-import utilStyles from '../../styles/utils.module.scss';
 
 // data from cms
 import categoriesData from '../../data/categories.preval';
@@ -17,8 +16,9 @@ import travelsData from '../../data/travels.preval';
 import regionsData from '../../data/regions.preval';
 import subRegionsData from '../../data/subRegions.preval';
 
-import { useSelection } from '../../context/selectionContext';
-import FullLoader from '../../components/Loaders/FullLoader';
+// styles
+import styles from './destinos.module.scss';
+import utilStyles from '../../styles/utils.module.scss';
 
 export default function Destinos({ category, categoryTravels, categoryRegions, categorySubRegions }) {
 
@@ -44,6 +44,7 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
     }
   }, [selectedRegion]);
 
+  // TODO limpar o listener no retorno
   useEffect(() => {
     setLoader(false);
     Router.events.on("routeChangeStart", () => {
@@ -85,7 +86,7 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
     );
   };
 
-  // TODO alguma coisa mais automatizada?
+  // TODO alguma coisa mais automatizada? ss, o useRouter
   const pageName = () => {
     if (category.slug !== 'pacotes-de-viagem') return category.slug;
     return selectedRegion.name;
@@ -101,7 +102,7 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
         <div id='map'></div>
       </section>
 
-      <section className={styles.destinos__body}>
+      <section className={styles.destinos__body} id="destinos_body">
         {isLoading ?
           <FullLoader />
           :
@@ -154,7 +155,8 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
                       selectedSubRegion?.description ||
                       'Consectetur adipisicing elit. Hic!'}
                   </p>
-                  <BlocksGrid blocks={filterTravels()} />
+                  <BlocksGrid blocks={filterTravels()}
+                    blockClick={() => document.querySelector('#destinos_body').scrollIntoView()} />
                 </main>
               </div>
             </div>

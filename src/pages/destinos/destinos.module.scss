@@ -11,6 +11,8 @@
 
   &__body {
     background-color: rgba(211, 211, 211, 0.4);
+    position: relative;
+    min-height: 60vh;
   }
 }
 

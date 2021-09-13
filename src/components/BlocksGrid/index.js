@@ -5,7 +5,7 @@ import { urlFor } from '../../sanity/imageUrl';
 
 import styles from './blocks-grid.module.scss';
 
-export default function BlocksGrid({ blocks }) {
+export default function BlocksGrid({ blocks, blockClick }) {
   return (
     <AnimatePresence>
       <div className={styles.blocks}>
@@ -16,6 +16,7 @@ export default function BlocksGrid({ blocks }) {
             icon={iconUrl}
             title={title}
             link={`/viagem/${slug}`}
+            handleClick={blockClick}
           />
         ))}
       </div>
