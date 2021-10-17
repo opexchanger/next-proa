@@ -7,7 +7,7 @@ import styles from './travel-content.module.scss';
 export default function TravelContent({ content }) {
   return (
     <>
-      <h2 className={styles.destino__title}>Sobre a experiência</h2>
+      <h2 className={styles.title}>Sobre a experiência</h2>
       <BlockContent
         className={styles.content}
         blocks={content}

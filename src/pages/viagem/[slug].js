@@ -11,6 +11,7 @@ import ModalProvider from '../../context/modalContext';
 import { getOneTravel } from '../../sanity/fetch';
 
 import styles from './viagem.module.scss';
+import Gallery from '../../components/Gallery';
 
 export default function Viagem({ viagem }) {
 
@@ -20,6 +21,7 @@ export default function Viagem({ viagem }) {
     regionName,
     subRegionName,
     content,
+    gallery
   } = viagem;
 
   return (
@@ -39,6 +41,8 @@ export default function Viagem({ viagem }) {
             <TravelBadges travel={viagem} />
 
             <TravelContent content={content} />
+
+            <Gallery images={gallery} />
 
           </div>
         </section>

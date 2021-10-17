@@ -12,7 +12,6 @@ export default function DesktopNavigation({ page }) {
   const handleClick = (e, url, changeRegion) => {
     e.preventDefault();
     router.push(url).then(changeRegion());
-
   }
 
   return (

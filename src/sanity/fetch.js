@@ -82,6 +82,7 @@ export const getOneTravel = async (slug) => {
         childFree,
         hasCortesy,
         cortesy,
+        gallery,
         "subRegionId": subRegion->_id,
         "subRegionName": subRegion->name,
   			"regionId": subRegion -> region -> _id,
@@ -92,4 +93,29 @@ export const getOneTravel = async (slug) => {
   );
 
   return travel;
+};
+
+export const getPageHome = async () => {
+  const pageHome = await client.fetch(`
+    *[ _type == "home-page" ] {
+      slogan,
+      ctaButtonText,
+      tiles,
+      presentationTitle,
+      presentationSubtitle,
+      experiencesTitle,
+      experiencesText,
+      experiencesButtonText,
+      aboutTitle,
+      aboutText,
+      aboutVideoUrl,
+      destinationsTitle,
+      destinationsText,
+      destinationsButtonText,
+      contactTitle,
+      contactText,
+    }
+  `);
+
+  return pageHome;
 };
