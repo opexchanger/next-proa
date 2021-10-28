@@ -1,0 +1,38 @@
+.component {
+  width: 100%;
+  background: #eeeeee;
+}
+
+.thumbnail {
+  img {
+    width: 100%;
+  }
+}
+
+.body {
+  padding: 20px;
+  display: grid;
+  gap: 8px;
+  time {
+    font-size: 14px;
+    text-align: center;
+  }
+  h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+  p {
+    font-size: 16px;
+    text-align: justify;
+  }
+  button {
+    padding: 8px;
+    border: none;
+    background: #a3a3a3;
+    font-family: inherit;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+  }
+}
