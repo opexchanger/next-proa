@@ -1,4 +1,4 @@
-import Modal from "../../Modal";
+import Modal from "../../../components/Modal";
 import { useModal } from '../../../context/modalContext';
 
 export default function BuyModal() {

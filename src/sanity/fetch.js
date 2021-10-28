@@ -95,11 +95,23 @@ export const getOneTravel = async (slug) => {
   return travel;
 };
 
+export const getPagesGeral = async () => {
+  const pagesGeral = await client.fetch(`
+    *[ _type == "geral" ] {
+      slogan,
+      ctaButtonText,
+      contactTitle,
+      contactImage,
+      contactText,
+    }
+  `);
+
+  return pagesGeral;
+};
+
 export const getPageHome = async () => {
   const pageHome = await client.fetch(`
     *[ _type == "home-page" ] {
-      slogan,
-      ctaButtonText,
       tiles,
       presentationTitle,
       presentationSubtitle,
@@ -112,10 +124,21 @@ export const getPageHome = async () => {
       destinationsTitle,
       destinationsText,
       destinationsButtonText,
-      contactTitle,
-      contactText,
     }
   `);
 
   return pageHome;
+};
+
+export const getCompanyInfo = async () => {
+  const companyInfo = await client.fetch(`
+    *[ _type == "companyInfo" ] {
+      address,
+      email,
+      phones,
+      whatsapp
+    }
+  `);
+
+  return companyInfo;
 };

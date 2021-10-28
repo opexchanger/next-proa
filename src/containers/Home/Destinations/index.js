@@ -1,6 +1,8 @@
-import Section from '../../Section';
-import Block from '../../Block';
-import { ButtonLink } from '../../Buttons';
+import BlockContent from '@sanity/block-content-to-react';
+
+import Section from '../../../components/Section';
+import Block from '../../../components/Block';
+import { ButtonLink } from '../../../components/Buttons';
 
 import styles from './destinations.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
@@ -9,8 +11,14 @@ import regions from '../../../data/regions.preval';
 import { useSelection } from '../../../context/selectionContext';
 import { urlFor } from '../../../sanity/imageUrl';
 
-export default function Destinations() {
+export default function Destinations({ data }) {
   const { setSelectedRegion } = useSelection();
+
+  const {
+    destinationsTitle,
+    destinationsText,
+    destinationsButtonText,
+  } = data;
 
   return (
     <Section addClasses={[styles.destinations]}>
@@ -24,11 +32,10 @@ export default function Destinations() {
         </div>
         <div>
           <Section.Title style={{ textAlign: 'left' }}>
-            Nossos destinos
+            {destinationsTitle}
           </Section.Title>
           <p className={styles.destinations__text}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Repellendus nemo voluptate corrupti.
+            <BlockContent blocks={destinationsText} />
           </p>
 
           {regions.map((region) => {
@@ -46,7 +53,7 @@ export default function Destinations() {
           })}
 
           <ButtonLink to='/destinos' style={{ marginTop: '2rem' }}>
-            Veja todos os destinos
+            {destinationsButtonText}
           </ButtonLink>
         </div>
       </div>

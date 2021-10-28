@@ -1,4 +1,4 @@
-import { Button } from "../../Buttons";
+import { Button } from "../../../components/Buttons";
 import { useModal } from "../../../context/modalContext";
 
 export default function CTAButton({ children }) {

@@ -1,4 +1,4 @@
-import Badge from "../../Badge";
+import Badge from "../../../components/Badge";
 
 import styles from './travel-badges.module.scss';
 

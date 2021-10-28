@@ -7,17 +7,23 @@
 
 /* ==== CONTACT WITH EXPERT ==== */
 .expert {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.9)),
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.9)
+    ),
     url('/img/bg-paisagem-3.jpg');
   background-size: cover;
   background-position: center;
 
   &__img {
-    border-radius: 50%;
-    margin: 0 auto 4rem auto;
+    text-align: center;
+    & > div {
+      border-radius: 50%;
+      margin: 0 auto 4rem auto !important;
 
-    @media (min-width: 600px) {
-      margin-bottom: 4rem;
+      @media (min-width: 600px) {
+        margin-bottom: 4rem !important;
+      }
     }
   }
 

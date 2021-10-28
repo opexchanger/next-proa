@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Router } from 'next/router';
 
 // components
-import Layout from '../../components/Layout';
+import Layout from '../../containers/Layout';
 import BlocksGrid from '../../components/BlocksGrid';
 import SelectOptions from '../../components/SelectOptions';
 import FullLoader from '../../components/Loaders/FullLoader';
@@ -98,6 +98,7 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
         <title>{category.title} | Proa Viagens</title>
       </Head>
 
+      {/* // TODO isso pode/deve ser um componente */}
       <section className={styles.destinos__header}>
         <div id='map'></div>
       </section>

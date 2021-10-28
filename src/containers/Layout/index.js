@@ -1,10 +1,22 @@
-import Section from '../Section';
-import { DesktopNavigation, MobileNavigation } from '../Navigation';
+import Image from 'next/image';
+import BlockContent from '@sanity/block-content-to-react';
+
+import Section from '../../components/Section';
+import { DesktopNavigation, MobileNavigation } from '../../components/Navigation';
+
+import globalData from '../../data/globalData.preval';
+import { urlFor } from '../../sanity/imageUrl';
 
 import styles from './layout.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
 
 export default function Layout({ children, page }) {
+  const {
+    contactTitle,
+    contactImage,
+    contactText,
+  } = globalData.pagesGeral;
+
   return (
     <>
       <header className={styles.header}>
@@ -17,19 +29,16 @@ export default function Layout({ children, page }) {
 
         <Section addClasses={[utilStyles.section, styles.expert]}>
           <div className={utilStyles.container}>
-            <img
-              src='/img/expert-fake.jpg'
-              alt='Expert'
-              className={styles.expert__img}
-            />
-            <Section.Title>Entre em contato com a guia</Section.Title>
+            <div className={styles.expert__img}>
+              <Image
+                src={urlFor(contactImage).width(250).height(250).url()}
+                width="250" height="250"
+              ></Image>
+            </div>
+            <Section.Title>{contactTitle}</Section.Title>
             <div className={utilStyles.contentCenter}>
               <Section.Paragraph>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Distinctio, incidunt dolor vel dolorem sint odio voluptatibus at
-                aut nisi numquam magnam optio facilis porro excepturi
-                repudiandae deleniti quidem eligendi? Eum impedit dolorum,
-                assumenda atque harum aliquam aperiam omnis a incidunt.
+                <BlockContent blocks={contactText} />
               </Section.Paragraph>
               <div className={styles.contact}>
                 <div className={styles.contact__icon}>

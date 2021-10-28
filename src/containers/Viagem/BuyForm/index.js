@@ -1,9 +1,9 @@
 import { Formik, Form } from 'formik';
 
 import formSchema from './formSchema';
-import { InputField, SelectField, TextArea, ButtonSubmit, ErrorDisplay, Label } from '../../Form';
+import { InputField, SelectField, TextArea, ButtonSubmit, ErrorDisplay, Label } from '../../../components/Form';
 import handleFormSubmit from '../../../utils/viagem/handleFormSubmit';
-import SpinLoader from '../../Loaders/SpinLoader';
+import SpinLoader from '../../../components/Loaders/SpinLoader';
 
 import styles from './buy-form.module.scss';
 

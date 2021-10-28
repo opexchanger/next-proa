@@ -2,14 +2,14 @@ import Head from 'next/head';
 
 import ModalProvider from '../../context/modalContext';
 
-import Layout from '../../components/Layout';
-import Hero from '../../components/Home/Hero';
-import Experiences from '../../components/Home/Experiences';
-import About from '../../components/Home/About';
-import Destinations from '../../components/Home/Destinations';
-import BuyModal from '../../components/Home/BuyModal';
+import Layout from '../../containers/Layout';
+import Hero from '../../containers/Home/Hero';
+import Experiences from '../../containers/Home/Experiences';
+import About from '../../containers/Home/About';
+import Destinations from '../../containers/Home/Destinations';
+import BuyModal from '../../containers/Home/BuyModal';
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <ModalProvider>
       <Layout page='home'>
@@ -20,10 +20,10 @@ export default function Home() {
 
         <BuyModal />
 
-        <Hero />
-        <Experiences />
-        <About />
-        <Destinations />
+        <Hero data={data} />
+        <Experiences data={data} />
+        <About data={data} />
+        <Destinations data={data} />
       </Layout>
     </ModalProvider>
   );

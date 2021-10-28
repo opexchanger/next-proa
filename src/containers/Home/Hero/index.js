@@ -1,11 +1,22 @@
-import { Button } from '../../Buttons';
+import { Button } from '../../../components/Buttons';
 import { useModal } from '../../../context/modalContext';
 
 import styles from './hero.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
+import globalData from '../../../data/globalData.preval';
 
-export default function Hero() {
+const getTileText = (tile) => {
+  const words = tile.split(' ');
+  const lastWord = words.pop();
+  const gluedFirstLine = `<span>${words.join(' ')}</span> ${lastWord}`;
+  return gluedFirstLine;
+}
+
+export default function Hero({ data }) {
   const { setHomePageModal } = useModal();
+
+  const { tiles } = data;
+  const { slogan, ctaButtonText } = globalData.pagesGeral;
 
   return (
     <section className={styles.hero}>
@@ -15,9 +26,9 @@ export default function Hero() {
             <source srcSet="/img/logo-proa-small.webp" media="(max-width: 900px)" />
             <img srcSet="/img/logo-proa.webp" alt="Logo" />
           </picture>
-          <h1 className={styles.hero__title}>A frase chamativa da Proa Viagens</h1>
+          <h1 className={styles.hero__title}>{slogan}</h1>
           <Button type='cta' onClick={() => setHomePageModal(true)} >
-            Agende agora
+            {ctaButtonText}
           </Button>
         </div>
         <div className={styles.hero__bottomline}>
@@ -29,8 +40,7 @@ export default function Hero() {
                   alt="Check"
                   className={styles.hero__tiles__icon}
                 />
-                <p>
-                  <span>O melhor preço de </span>Passagens
+                <p dangerouslySetInnerHTML={{ __html: getTileText(tiles.tile_1) }}>
                 </p>
               </div>
               <div className={styles.hero__tiles__tile}>
@@ -39,8 +49,7 @@ export default function Hero() {
                   alt="Check"
                   className={styles.hero__tiles__icon}
                 />
-                <p>
-                  <span>Sem estresse com </span>Bagagem
+                <p dangerouslySetInnerHTML={{ __html: getTileText(tiles.tile_2) }}>
                 </p>
               </div>
               <div className={styles.hero__tiles__tile}>
@@ -49,8 +58,7 @@ export default function Hero() {
                   alt="Check"
                   className={styles.hero__tiles__icon}
                 />
-                <p>
-                  <span>O melhor preço de </span>Hospedagens
+                <p dangerouslySetInnerHTML={{ __html: getTileText(tiles.tile_3) }}>
                 </p>
               </div>
             </div>
