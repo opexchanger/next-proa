@@ -1,23 +1,11 @@
 @import '../../styles/variables';
 
 .destinos {
-  &__header {
-    height: 50vh;
-
-    //tirar dps
-    background-image: url('/img/world-map.png');
-    position: relative;
-  }
-
   &__body {
     background-color: rgba(211, 211, 211, 0.4);
     position: relative;
     min-height: 60vh;
   }
-}
-
-#map {
-  height: 100%;
 }
 
 .select {

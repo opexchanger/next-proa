@@ -1,8 +1,12 @@
+import Head from 'next/head';
+
 import { getAllPosts } from '../../sanity/blog/fetch';
 import { urlFor } from '../../sanity/imageUrl'
 
 import Card from '../../components/Card';
 import Feed from '../../containers/Blog/Feed';
+import Layout from '../../containers/Layout';
+import Hero from '../../components/Hero';
 
 export const getServerSideProps = async () => {
   const blogPosts = await getAllPosts();
@@ -35,5 +39,15 @@ export default function Blog({ blogPosts }) {
   } else {
     content = <h2>Nenhuma postagem ainda! Volte em breve que teremos atualizações!</h2>
   }
-  return content;
+  return (
+    <Layout page="blog">
+      <Head>
+        <title>Blog da Proa Viagens</title>
+        <meta name='description' content='Blog da Proa Agência de Viagens' />
+      </Head>
+
+      <Hero />
+      {content}
+    </Layout>
+  );
 }

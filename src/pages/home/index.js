@@ -3,11 +3,12 @@ import Head from 'next/head';
 import ModalProvider from '../../context/modalContext';
 
 import Layout from '../../containers/Layout';
-import Hero from '../../containers/Home/Hero';
+import Hero from '../../components/Hero';
 import Experiences from '../../containers/Home/Experiences';
 import About from '../../containers/Home/About';
 import Destinations from '../../containers/Home/Destinations';
 import BuyModal from '../../containers/Home/BuyModal';
+import Header from '../../containers/Home/Header';
 
 export default function Home({ data }) {
   return (
@@ -20,7 +21,10 @@ export default function Home({ data }) {
 
         <BuyModal />
 
-        <Hero data={data} />
+        <Hero>
+          <Header data={data} />
+        </Hero>
+
         <Experiences data={data} />
         <About data={data} />
         <Destinations data={data} />

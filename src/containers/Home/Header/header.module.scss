@@ -1,18 +1,7 @@
 @import '../../../styles/variables';
 @import '../../../styles/abstracts';
 
-.hero {
-  padding: 18rem 0 15rem 0;
-  background: url('/img/world-map.png');
-  background-size: cover;
-  background-position: center;
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+.header {
   &__content {
     text-align: center;
 

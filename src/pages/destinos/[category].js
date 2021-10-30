@@ -19,6 +19,7 @@ import subRegionsData from '../../data/subRegions.preval';
 // styles
 import styles from './destinos.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
+import Hero from '../../components/Hero';
 
 export default function Destinos({ category, categoryTravels, categoryRegions, categorySubRegions }) {
 
@@ -98,10 +99,8 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
         <title>{category.title} | Proa Viagens</title>
       </Head>
 
-      {/* // TODO isso pode/deve ser um componente */}
-      <section className={styles.destinos__header}>
-        <div id='map'></div>
-      </section>
+      <Hero>
+      </Hero>
 
       <section className={styles.destinos__body} id="destinos_body">
         {isLoading ?

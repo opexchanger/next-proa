@@ -7,7 +7,7 @@ import styles from './experiences.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
 // import BlocksGrid from '../../../components/BlocksGrid';
 
-export default function Hero({ data }) {
+export default function Experiences({ data }) {
   const {
     presentationTitle,
     presentationSubtitle,
