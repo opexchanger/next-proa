@@ -9,7 +9,7 @@ import TravelContent from '../../containers/Viagem/TravelContent';
 import Gallery from '../../components/Gallery';
 
 import ModalProvider from '../../context/modalContext';
-import { getOneTravel } from '../../sanity/fetch';
+import { getAllTravels, getOneTravel } from '../../sanity/fetch';
 
 import styles from './viagem.module.scss';
 
@@ -26,6 +26,13 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const result = await getOneTravel(params.slug);
   const viagem = result[0];
+
+  viagem.duration = intervalToDuration({
+    start: new Date(viagem.departureDate),
+    end: new Date(viagem.returnDate),
+  }).days;
+  viagem.departureDate = format(new Date(viagem.departureDate), 'dd/MM');
+  viagem.returnDate = format(new Date(viagem.returnDate), 'dd/MM');
 
   return {
     props: {
@@ -73,6 +80,7 @@ export default function Viagem({ viagem }) {
     </ModalProvider>
   );
 }
+
 
 // export async function getServerSideProps({ params }) {
 //   const result = await getOneTravel(params.slug);
