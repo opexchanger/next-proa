@@ -142,3 +142,25 @@ export const getCompanyInfo = async () => {
 
   return companyInfo;
 };
+
+export const getModal = async () => {
+  const modal = await client.fetch(`
+    *[_type == 'modal'] {
+      title,
+      subtitle,
+      subjects,
+      btnEmailText,
+      btnWhatsappText,
+      successTitleWhatsapp,
+      successTextWhatsapp,
+      failTitleWhatsapp,
+      failTextWhatsapp,
+      successTitleEmail,
+      successTextEmail,
+      failTitleEmail,
+      failTextEmail
+    }
+  `);
+
+  return modal;
+};

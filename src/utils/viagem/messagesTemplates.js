@@ -1,18 +1,32 @@
+import modal from "../../data/modal.preval";
+
+const {
+  successTitleWhatsapp,
+  successTextWhatsapp,
+  failTitleWhatsapp,
+  failTextWhatsapp,
+  successTitleEmail,
+  successTextEmail,
+  failTitleEmail,
+  failTextEmail
+} = modal;
+
 export const mailSuccess = `
-<p>O email foi enviado com sucesso.</p>
-<p>Em breve retornaremos sua mensagem!</p>
+  <h2>${successTitleEmail}</h2>
+  <p>${successTextEmail}</p>
 `
 
 export const mailFail = `
-  <p>opa</p>
-  <p>deu erro</p>
+  <h2>${failTitleEmail}</h2>
+  <p>${failTextEmail}</p>
 `
 
 export const whatsappSuccess = `
-<p>Obrigado por entrar em contato!</p>
+  <h2>${successTitleWhatsapp}</h2>
+  <p>${successTextWhatsapp}</p>
 `
 
 export const whatsappFail = `
-  <p>opa</p>
-  <p>deu erro</p>
+  <h2>${failTitleWhatsapp}</h2>
+  <p>${failTextWhatsapp}</p>
 `

@@ -7,7 +7,12 @@ import SpinLoader from '../../../components/Loaders/SpinLoader';
 
 import styles from './buy-form.module.scss';
 
-export default function BuyForm({ travel }) {
+export default function BuyForm({ travel, data }) {
+  const {
+    subjects,
+    btnEmailText,
+    btnWhatsappText
+  } = data;
 
   return (
     <Formik
@@ -16,11 +21,11 @@ export default function BuyForm({ travel }) {
         lastName: '',
         email: '',
         travel: travel.title,
-        subject: 'estimate',
+        subject: subjects[0]._key,
         people: '1',
       }}
       validationSchema={formSchema}
-      onSubmit={async (values, { setStatus }) => await handleFormSubmit(values, setStatus)}
+      onSubmit={async (values, { setStatus }) => await handleFormSubmit(values, subjects, setStatus)}
     >
       {({ isValid, dirty, isSubmitting, status }) => (
 
@@ -39,8 +44,9 @@ export default function BuyForm({ travel }) {
 
             <Label htmlFor="subject">Qual o assunto principal?</Label>
             <SelectField id="subject" name="subject">
-              <option value="estimate" defaultValue>Gostaria de um orçamento</option>
-              <option value="information">Gostaria de tirar uma dúvida</option>
+              {subjects.map(({ _key, text }) => (
+                <option key={_key} value={_key}>{text}</option>
+              ))}
             </SelectField>
 
             <Label htmlFor="people">Quantas pessoas iriam na viagem?</Label>
@@ -54,16 +60,16 @@ export default function BuyForm({ travel }) {
             <TextArea name="message" placeholder="Sua Mensagem" cols={20} rows={8} />
 
             <ButtonSubmit type="submit" data-flag="action-email" disabled={!isValid || !dirty} mode="email">
-              Quero entrar em contato por email
+              {btnEmailText}
             </ButtonSubmit>
 
             <ButtonSubmit type="submit" data-flag="action-whatsapp" disabled={!isValid || !dirty} mode="whatsapp">
-              Quero entrar em contato por WhatsApp
+              {btnWhatsappText}
             </ButtonSubmit>
             {isSubmitting && <SpinLoader />}
           </Form>
           :
-          (<div className={`${styles.form__result} ${styles[status.result]}`} dangerouslySetInnerHTML={{ __html: status.html }} >
+          (<div className={`${styles.form__result} ${status.result === 'success' ? styles.success : styles.fail}`} dangerouslySetInnerHTML={{ __html: status.html }} >
           </div>)
       )
       }
