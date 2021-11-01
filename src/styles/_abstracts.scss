@@ -4,7 +4,7 @@
     content: '';
     height: $height;
     width: 100%;
-    background-color: $color-primary;
+    background-color: $color-secondary;
     position: absolute;
     bottom: -2px;
     left: 0;
@@ -33,16 +33,16 @@
   font-weight: 700;
   display: inline-block;
   border-radius: 25px;
-  background-color: $color-yellow;
+  background-color: $color-auxiliar-2;
   color: $color-primary;
 }
 
 @mixin btnHover {
-  -webkit-transform: scaleX(1.04) translate3d( 0, 0, 0) perspective(1px);
-  -moz-transform: scaleX(1.04) translate3d( 0, 0, 0) perspective(1px);
-  -o-transform: scaleX(1.04) translate3d( 0, 0, 0) perspective(1px);
-  -ms-transform: scaleX(1.04) translate3d( 0, 0, 0) perspective(1px);
-  transform: scaleX(1.04) translate3d( 0, 0, 0) perspective(1px);
+  -webkit-transform: scaleX(1.04) translate3d(0, 0, 0) perspective(1px);
+  -moz-transform: scaleX(1.04) translate3d(0, 0, 0) perspective(1px);
+  -o-transform: scaleX(1.04) translate3d(0, 0, 0) perspective(1px);
+  -ms-transform: scaleX(1.04) translate3d(0, 0, 0) perspective(1px);
+  transform: scaleX(1.04) translate3d(0, 0, 0) perspective(1px);
 }
 
 @mixin noFlickr {

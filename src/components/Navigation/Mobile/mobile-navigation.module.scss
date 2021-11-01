@@ -30,7 +30,6 @@
     font-size: 3rem;
     font-weight: 700;
     padding-bottom: 1px;
-    color: $color-primary;
     @include menuLinkEffect(4.5px);
 
     &.current {

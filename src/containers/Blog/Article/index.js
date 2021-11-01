@@ -32,16 +32,18 @@ export default function Article(props) {
         <div className={styles.head}>
           <h1>{title}</h1>
           <p>{description}</p>
-          <FormattedDate>{date}</FormattedDate>
         </div>
         <div className={styles.authorSnippet}>
           <div className={styles.avatar}>
-            <img src={authorAvatarUrl} alt={authorName} />
+            <img src={authorAvatarUrl || '/img/no-avatar.png'} alt={authorName} />
           </div>
-          <span>{authorName}</span>
+          <div>
+            <span>{authorName}, </span>
+            <FormattedDate>{date}</FormattedDate>
+          </div>
         </div>
         <div className={styles.coverImage}>
-          <img src={coverImageUrl || '/img/no-avatar.png'} alt={title} />
+          <img src={coverImageUrl} alt={title} />
         </div>
         <BlockContent
           className={styles.blockContent}

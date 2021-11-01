@@ -2,7 +2,7 @@ import styles from './section.module.scss';
 
 export default function Section({ children, addClasses, ...restProps }) {
   return (
-    <section className={`${styles.section} ${addClasses.join(' ')}`} {...restProps}>
+    <section className={`${styles.section} ${addClasses ? addClasses.join(' ') : ''}`} {...restProps}>
       {children}
     </section>
   );

@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 
 .destinations {
-  background-color: rgba(lighten($color-green, 15%), 0.8);
+  background-color: rgba($color-auxiliar-1, 0.4);
 
   &__container {
     display: flex;
