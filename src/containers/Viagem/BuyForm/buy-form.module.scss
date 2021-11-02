@@ -52,7 +52,7 @@
 }
 
 .success {
-  color: $color-green;
+  color: $color-success;
 
   &::before {
     background-image: url('/img/icon_message_success.png');
@@ -60,7 +60,7 @@
 }
 
 .fail {
-  color: red;
+  color: $color-error;
 
   &::before {
     background-image: url('/img/icon_message_fail.png');

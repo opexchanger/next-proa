@@ -12,10 +12,8 @@ const getTileText = (tile) => {
   return gluedFirstLine;
 }
 
-export default function Header({ data }) {
+export default function Header({ tiles }) {
   const { setHomePageModal } = useModal();
-
-  const { tiles } = data;
   const { slogan, ctaButtonText } = globalData.pagesGeral;
 
   return (

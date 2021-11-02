@@ -136,7 +136,9 @@ export const getCompanyInfo = async () => {
       address,
       email,
       phones,
-      whatsapp
+      whatsapp,
+      instagram,
+      facebook
     }
   `);
 

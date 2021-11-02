@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import pagesList from '../../../data/pagesList';
-import getSelectRegion from '../utils/getSelectRegion';
+import getSelectRegion from '../../../utils/getSelectRegion';
 import { btnVariants, liVariants, navVariants, ulVariants } from './animationVariants';
 import runMultiple from '../../../utils/runMultiple';
 

@@ -1,5 +1,5 @@
-import regions from '../../../data/regions.preval';
-import { useSelection } from '../../../context/selectionContext';
+import regions from '../data/regions.preval';
+import { useSelection } from '../context/selectionContext';
 
 export default function getSelectRegion() {
   const { setSelectedRegion } = useSelection();

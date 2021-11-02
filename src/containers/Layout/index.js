@@ -2,6 +2,7 @@ import { DesktopNavigation, MobileNavigation } from '../../components/Navigation
 
 import styles from './layout.module.scss';
 import Contact from '../../components/Contact';
+import Footer from '../../components/Footer';
 
 export default function Layout({ children, page }) {
   return (
@@ -16,7 +17,7 @@ export default function Layout({ children, page }) {
         <Contact />
       </main>
 
-      <footer className={styles.footer}></footer>
+      <Footer />
     </>
   );
 }

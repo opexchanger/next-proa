@@ -1,7 +1,7 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 import pagesList from '../../../data/pagesList';
-import getSelectRegion from '../utils/getSelectRegion';
+import getSelectRegion from '../../../utils/getSelectRegion';
 
 import styles from './desktop-navigation.module.scss';
 
