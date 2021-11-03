@@ -83,8 +83,11 @@ export default function Footer() {
           <div className={styles.footer__address}>
             <h3 className={styles.footer__title}>Contato</h3>
             <p className={styles.footer__text}>{email}</p>
-            <p className={styles.footer__text}>{address}</p>
           </div>
+        </div>
+
+        <div className={styles.footer__bottom}>
+          <p className={styles.footer__copyright}>© COPYRIGHT 2021 Proa Viagens / CNPJ: 34.598.328/0001-73 / Endereço {address}</p>
         </div>
       </div>
     </footer>
