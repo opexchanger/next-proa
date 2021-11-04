@@ -1,0 +1,86 @@
+@import '../../../styles/variables';
+
+.team {
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-auxiliar-1, 1),
+      rgba($color-auxiliar-1, 0.7)
+    ),
+    url('/img/bg-paisagem-5.jpg');
+  background-position: right top;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  padding-top: 90px;
+  position: relative;
+
+  @media (min-width: 1900px) {
+    background-size: 100%;
+  }
+
+  &__grid {
+    margin-top: 4rem;
+    display: grid;
+    grid-gap: 10%;
+    grid-row-gap: 50px;
+    grid-template-columns: 1fr;
+
+    @media (min-width: 600px) {
+      grid-row-gap: 60px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: 1200px) {
+      grid-row-gap: 60px;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  &__employee {
+    text-align: center;
+    position: relative;
+
+    &:nth-of-type(2) {
+      margin-top: 0;
+    }
+
+    &:nth-of-type(3) {
+      margin-top: 0;
+    }
+
+    @media (min-width: 600px) {
+      &:nth-of-type(2) {
+        margin-top: 45px;
+      }
+
+      &:nth-of-type(2n + 3) {
+        margin-top: -15px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      &:nth-of-type(3n + 2) {
+        margin-top: 45px;
+      }
+      &:nth-of-type(3n + 3) {
+        margin-top: -15px;
+      }
+    }
+  }
+}
+
+.employee {
+  &__name {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  &__function {
+    font-style: italic;
+    font-size: 1.8rem;
+    margin: 0;
+  }
+
+  &__picture {
+    margin-bottom: 1rem;
+  }
+}

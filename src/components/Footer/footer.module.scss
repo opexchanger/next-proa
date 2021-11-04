@@ -2,7 +2,11 @@
 
 .footer {
   padding: 8rem 0 4rem;
-  background-color: $color-secondary-light;
+  background-image: linear-gradient(
+    rgba($color-secondary-light, 0.5),
+    rgba($color-secondary-light, 0.7)
+  );
+  border-top: 6px solid $color-auxiliar-3;
 
   &__wrapper {
     display: flex;

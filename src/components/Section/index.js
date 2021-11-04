@@ -8,9 +8,9 @@ export default function Section({ children, addClasses, ...restProps }) {
   );
 }
 
-Section.Title = function ({ children, ...restProps }) {
+Section.Title = function ({ children, left, ...restProps }) {
   return (
-    <h2 className={styles.title} {...restProps}>
+    <h2 className={styles.title} style={left ? { textAlign: 'left' } : {}} {...restProps}>
       {children}
     </h2>
   );

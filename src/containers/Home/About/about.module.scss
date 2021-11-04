@@ -1,13 +1,16 @@
 @import '../../../styles/variables';
 
 .about {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)),
-    url('/img/bg-paisagem-222.jpg');
+  background-image: linear-gradient(
+      to bottom,
+      rgba($color-auxiliar-1, 1),
+      rgba($color-auxiliar-1, 0.6)
+    ),
+    url('/img/bg-paisagem-4.jpg');
   background-size: cover;
   background-position: center;
   text-align: center;
   padding-bottom: 0;
-  color: $color-white;
 
   &__media {
     display: inline-block;

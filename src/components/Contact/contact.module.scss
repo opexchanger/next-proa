@@ -1,7 +1,10 @@
+@import '../../styles/variables';
+
 .expert {
   background-image: linear-gradient(
-      rgba(255, 255, 255, 0.4),
-      rgba(255, 255, 255, 0.9)
+      to right bottom,
+      rgba($color-white, 0.8),
+      rgba($color-secondary-light, 0.5)
     ),
     url('/img/bg-paisagem-3.jpg');
   background-size: cover;

@@ -5,6 +5,9 @@
 .button:visited {
   @extend %btn-styles;
 
+  background-color: $color-secondary;
+  color: $color-white;
+
   padding: 0.4em 1.5em;
   text-decoration: none;
   transition: all 0.4s;

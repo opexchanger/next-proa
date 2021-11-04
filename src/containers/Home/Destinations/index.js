@@ -28,10 +28,10 @@ export default function Destinations({ data }) {
         )}
       >
         <div className={styles.destinations__map}>
-          <img src='img/world-map.svg' alt='Map' />
+          <img src='img/world-map.png' alt='Map' />
         </div>
         <div>
-          <Section.Title style={{ textAlign: 'left' }}>
+          <Section.Title left>
             {destinationsTitle}
           </Section.Title>
           <p className={styles.destinations__text}>
