@@ -1,5 +1,12 @@
 export default [
   {
+    name: 'home',
+    title: 'Home',
+    url: '/',
+    viagem: false,
+    order: -1
+  },
+  {
     name: 'Viagens Nacionais',
     title: 'Viagens Nacionais',
     url: '/destinos/pacotes-de-viagem',
@@ -29,6 +36,14 @@ export default [
     name: 'contato',
     title: 'Contato',
     url: '/contato',
-    viagem: false
-  }
+    viagem: false,
+    order: 1,
+  },
+  {
+    name: 'blog',
+    title: 'Blog',
+    url: '/blog',
+    viagem: false,
+    order: 2
+  },
 ]

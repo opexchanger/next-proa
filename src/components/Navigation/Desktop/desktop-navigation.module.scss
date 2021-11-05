@@ -44,3 +44,20 @@
     }
   }
 }
+
+.item__drop {
+  position: relative;
+}
+
+.link__drop {
+  font-size: 1.8rem;
+  text-decoration: none;
+  padding-bottom: 1px;
+  cursor: pointer;
+  &::after {
+    content: '\25BC';
+    position: absolute;
+    right: -21%;
+    top: 10%;
+  }
+}
