@@ -1,36 +1,26 @@
 import Section from '../../../components/Section';
+import { urlFor } from '../../../sanity/imageUrl';
 
 import styles from './team.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
 
-export default function MeetTheTeam() {
+export default function MeetTheTeam({ data }) {
+  const { teamTitle, employees } = data;
 
   return (
     <Section addClasses={[styles.team]}>
       <div className={utilStyles.container}>
-        <Section.Title left>Conheça a nossa equipe</Section.Title>
+        <Section.Title left>{teamTitle}</Section.Title>
         <div className={styles.team__grid}>
-          <div className={styles.team__employee}>
-            <img src='/img/employee-1.jpg' alt="Foto do funcionário"
-              className={styles.employee__picture}
-            />
-            <h2 className={styles.employee__name}>Nome do funcionário</h2>
-            <p className={styles.employee__function}>Função</p>
-          </div>
-          <div className={styles.team__employee}>
-            <img src='/img/employee-2.jpg' alt="Foto do funcionário"
-              className={styles.employee__picture}
-            />
-            <h2 className={styles.employee__name}>Nome do funcionário</h2>
-            <p className={styles.employee__function}>Função</p>
-          </div>
-          <div className={styles.team__employee}>
-            <img src='/img/employee-3.jpg' alt="Foto do funcionário"
-              className={styles.employee__picture}
-            />
-            <h2 className={styles.employee__name}>Nome do funcionário</h2>
-            <p className={styles.employee__function}>Função</p>
-          </div>
+          {employees.map(({ _key, name, position, photo }) => (
+            <div className={styles.team__employee} key={_key}>
+              <img src={urlFor(photo).width(600).height(400).url()} alt="Foto do funcionário"
+                className={styles.employee__picture}
+              />
+              <h2 className={styles.employee__name}>{name}</h2>
+              <p className={styles.employee__function}>{position}</p>
+            </div>
+          ))}
         </div>
       </div>
     </Section>

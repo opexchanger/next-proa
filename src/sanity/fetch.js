@@ -124,6 +124,8 @@ export const getPageHome = async () => {
       destinationsTitle,
       destinationsText,
       destinationsButtonText,
+      teamTitle,
+      employees
     }
   `);
 

@@ -26,7 +26,7 @@ export default function DesktopNavigation({ page }) {
     <nav className={styles.navDesktop}>
       <ul className={styles.navDesktop__list}>
         <li className={`${styles.navDesktop__item} ${styles.item__drop}`} onClick={toggleDropdown} ref={node}>
-          <span className={styles.link__drop}>
+          <span className={`${styles.link__drop} ${openDropdown ? styles.link__drop_open : ''}`}>
             Viagens
           </span>
           <Dropdown open={openDropdown} setOpen={setOpenDropdown} node={node}>

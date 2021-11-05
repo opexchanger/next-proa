@@ -38,10 +38,11 @@ export default function Home({ data }) {
           <Header tiles={data.tiles} />
         </Hero>
 
+        {/* TODO passar só os itens específicos x o objeto inteiro afeta quanto a performance?  */}
         <Experiences data={data} />
         <About data={data} />
         <Destinations data={data} />
-        <MeetTheTeam />
+        <MeetTheTeam data={data} />
       </Layout>
     </ModalProvider>
   );

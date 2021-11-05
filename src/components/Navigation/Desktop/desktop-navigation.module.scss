@@ -59,5 +59,12 @@
     position: absolute;
     right: -21%;
     top: 10%;
+    transition: transform 0.3s;
+  }
+
+  &_open {
+    &::after {
+      transform: rotate(180deg);
+    }
   }
 }
