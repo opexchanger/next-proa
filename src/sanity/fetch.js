@@ -111,10 +111,11 @@ export const getPagesGeral = async () => {
 
 export const getPageHome = async () => {
   const pageHome = await client.fetch(`
-    *[ _type == "home-page" ] {
+    *[_type=="home-page"]{
       tiles,
       presentationTitle,
       presentationSubtitle,
+      mosaic,
       experiencesTitle,
       experiencesText,
       experiencesButtonText,
@@ -124,8 +125,16 @@ export const getPageHome = async () => {
       destinationsTitle,
       destinationsText,
       destinationsButtonText,
-      teamTitle,
-      employees
+      "team": *[_type=='team']{
+        teamTitle,
+        teamText,
+        employees
+      },
+      "testimonials": *[_type=='testimonials']{
+        testimonialsTitle,
+        testimonialsText,
+        testimonials
+      },
     }
   `);
 

@@ -5,7 +5,7 @@ import styles from './team.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
 
 export default function MeetTheTeam({ data }) {
-  const { teamTitle, employees } = data;
+  const { teamTitle, teamText, employees } = data;
 
   return (
     <Section addClasses={[styles.team]}>

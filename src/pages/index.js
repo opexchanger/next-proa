@@ -24,6 +24,7 @@ export const getStaticProps = async () => {
 }
 
 export default function Home({ data }) {
+
   return (
     <ModalProvider>
       <Layout page='home'>
@@ -42,7 +43,8 @@ export default function Home({ data }) {
         <Experiences data={data} />
         <About data={data} />
         <Destinations data={data} />
-        <MeetTheTeam data={data} />
+        <MeetTheTeam data={data.team[0]} />
+        {/* <Testimonials data={data.testimonials[0]} /> */}
       </Layout>
     </ModalProvider>
   );

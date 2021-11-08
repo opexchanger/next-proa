@@ -5,12 +5,14 @@ import { ButtonLink } from '../../../components/Buttons';
 
 import styles from './experiences.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
+import Mosaic from '../../../components/Mosaic';
 // import BlocksGrid from '../../../components/BlocksGrid';
 
 export default function Experiences({ data }) {
   const {
     presentationTitle,
     presentationSubtitle,
+    mosaic,
     experiencesTitle,
     experiencesText,
     experiencesButtonText
@@ -23,11 +25,7 @@ export default function Experiences({ data }) {
         <Section.Subtitle>{presentationSubtitle}</Section.Subtitle>
         <div className={styles.call}>
           <div className={styles.call__left}>
-            <img
-              className={utilStyles.imgFit}
-              src="/img/trip-feat-bg2.jpg"
-              alt="Travel pic"
-            />
+            <Mosaic images={mosaic} />
           </div>
           <div className={styles.call__right}>
             <div className={styles.call__text}>
@@ -36,7 +34,7 @@ export default function Experiences({ data }) {
                 <BlockContent blocks={experiencesText} />
               </p>
             </div>
-            <ButtonLink to="/" type='block'>
+            <ButtonLink to="/" type='block' style={{ whiteSpace: "nowrap" }}>
               {experiencesButtonText}
             </ButtonLink>
           </div>
