@@ -5,7 +5,7 @@
   &__photo {
     margin: 0;
     position: absolute;
-    z-index: 10;
+    z-index: 2;
     transition: all 0.2s;
     box-shadow: 0 7px 8px -6px rgba($color-black, 0.2);
     width: 55%;
@@ -37,7 +37,7 @@
       outline: 0.75rem solid $color-secondary;
       transform: scale(1.05) translateY(-0.5rem);
       box-shadow: 0 2.5rem 4rem rgba($color-black, 0.5);
-      z-index: 20;
+      z-index: 4;
 
       & > figcaption {
         opacity: 1;

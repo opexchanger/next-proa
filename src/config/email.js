@@ -4,8 +4,8 @@ export const smtp = {
 }
 
 export const mailMessage = {
-  from: process.env.SENDER_EMAIL,
-  to: process.env.RECEIVER_EMAIL,
+  from: 'contact@impactinglifestyle.com',
+  to: 'flavioneto96@gmail.com',
   replyTo: '',
   subject: '',
   text: '',
