@@ -52,7 +52,7 @@ export default function Destinations({ data }) {
             );
           })}
 
-          <ButtonLink to='/destinos' style={{ marginTop: '2rem' }}>
+          <ButtonLink to='/destinos/pacotes-de-viagem' style={{ marginTop: '2rem' }}>
             {destinationsButtonText}
           </ButtonLink>
         </div>

@@ -1,10 +1,10 @@
-import { Button } from '../../../components/Buttons';
-import { useModal } from '../../../context/modalContext';
+import LogoVertical from '../../../components/Logos/LogoVertical';
+import CTAHome from '../CTAHome';
 
 import styles from './header.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
+
 import globalData from '../../../data/globalData.preval';
-import LogoVertical from '../../../components/Logos/LogoVertical';
 
 const getTileText = (tile) => {
   const words = tile.split(' ');
@@ -14,17 +14,14 @@ const getTileText = (tile) => {
 }
 
 export default function Header({ tiles }) {
-  const { setHomePageModal } = useModal();
-  const { slogan, ctaButtonText } = globalData.pagesGeral;
+  const { slogan } = globalData.pagesGeral;
 
   return (
     <div className={utilStyles.container}>
       <div className={styles.header__content}>
         <LogoVertical />
         <h1 className={styles.header__title}>{slogan}</h1>
-        <Button type='cta' onClick={() => setHomePageModal(true)} >
-          {ctaButtonText}
-        </Button>
+        <CTAHome />
       </div>
       <div className={styles.header__bottomline}>
         <div className={styles.container}>

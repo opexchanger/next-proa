@@ -11,6 +11,7 @@
   border: 0;
   cursor: pointer;
   transition: transform 0.2s linear;
+  border-radius: 10px;
 
   @include noFlickr;
 }
@@ -19,14 +20,10 @@
   @include btnHover;
 }
 
-.buttonCta {
-  border-radius: 10px;
-}
-
-.buttonBlock {
-  transform: translateX(-0.6rem);
-  font-size: 1.6rem;
-}
+// .buttonBlock {
+//   transform: translateX(-0.6rem);
+//   font-size: 1.6rem;
+// }
 
 .selfCentered {
   display: block;

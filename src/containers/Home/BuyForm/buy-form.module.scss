@@ -1,0 +1,68 @@
+@import '../../../styles/variables';
+
+.form {
+  &.submitting {
+    &::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-color: $color-white;
+      opacity: 0.5;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__result {
+    min-height: 335px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $color-white;
+    border-radius: 5px;
+    border-bottom: 1px solid #000;
+    text-align: center;
+    padding: 0 4rem;
+
+    &::before {
+      content: '';
+      width: 54px;
+      height: 55px;
+      margin-bottom: 2rem;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+.success {
+  color: $color-success;
+
+  &::before {
+    background-image: url('/img/icon_message_success.png');
+  }
+}
+
+.fail {
+  color: $color-error;
+
+  &::before {
+    background-image: url('/img/icon_message_fail.png');
+  }
+}

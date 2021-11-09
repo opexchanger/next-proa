@@ -1,9 +1,9 @@
 import { urlFor } from "../../sanity/imageUrl";
 import Section from '../Section';
+import CTAHome from "../../containers/Home/CTAHome";
 
 import styles from './testimonials.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
-import { Button } from '../Buttons';
 
 export default function Testimonials({ data }) {
   const { testimonials, testimonialsTitle } = data;
@@ -28,7 +28,7 @@ export default function Testimonials({ data }) {
             </div>
           ))}
         </div>
-        <Button type="cta" selfCenter>Agende agora</Button>
+        <CTAHome selfCenter />
       </div>
     </Section>
   )

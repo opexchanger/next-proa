@@ -34,7 +34,7 @@ export default function Experiences({ data }) {
                 <BlockContent blocks={experiencesText} />
               </p>
             </div>
-            <ButtonLink to="/" type='block' style={{ whiteSpace: "nowrap" }}>
+            <ButtonLink to="/destinos/pacotes-de-viagem" type='block' style={{ whiteSpace: "nowrap" }}>
               {experiencesButtonText}
             </ButtonLink>
           </div>

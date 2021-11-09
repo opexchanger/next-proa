@@ -1,7 +1,7 @@
 import Modal from '../../../components/Modal';
 import BuyForm from '../BuyForm';
 import { useModal } from '../../../context/modalContext';
-import modalData from '../../../data/modal.preval'
+import modalData from '../../../data/modal.preval';
 
 import styles from './buy-modal.module.scss';
 

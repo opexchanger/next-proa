@@ -7,7 +7,7 @@ import BuyModal from '../../containers/Viagem/BuyModal';
 import TravelBadges from '../../containers/Viagem/TravelBadges';
 import TravelContent from '../../containers/Viagem/TravelContent';
 import Gallery from '../../components/Gallery';
-import CTAButton from '../../containers/Viagem/CTAButton';
+import CTAButton from '../../containers/Viagem/CTAViagem';
 
 import ModalProvider from '../../context/modalContext';
 import { getAllTravels, getOneTravel } from '../../sanity/fetch';
