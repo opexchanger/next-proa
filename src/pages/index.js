@@ -12,6 +12,7 @@ import Header from '../containers/Home/Header';
 import MeetTheTeam from '../containers/Home/MeetTheTeam';
 
 import { getPageHome } from '../sanity/fetch';
+import Testimonials from '../components/Testimonials';
 
 export const getStaticProps = async () => {
   const pageHomeData = await getPageHome();
@@ -44,7 +45,7 @@ export default function Home({ data }) {
         <About data={data} />
         <Destinations data={data} />
         <MeetTheTeam data={data.team[0]} />
-        {/* <Testimonials data={data.testimonials[0]} /> */}
+        <Testimonials data={data.testimonials[0]} />
       </Layout>
     </ModalProvider>
   );
