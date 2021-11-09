@@ -73,9 +73,12 @@
   }
 
   &__function {
-    font-style: italic;
     font-size: 1.8rem;
     margin: 0;
+
+    a {
+      font-weight: bold;
+    }
   }
 
   &__picture {

@@ -21,13 +21,15 @@ export default function MeetTheTeam({ data }) {
           </div>
           <div className={styles.divisor__left}>
             <div className={styles.team__grid}>
-              {employees.map(({ _key, name, position, photo }) => (
+              {employees.map(({ _key, name, position, photo, whatsappLink }) => (
                 <div className={styles.team__employee} key={_key}>
                   <img src={urlFor(photo).width(600).height(400).url()} alt="Foto do funcionário"
                     className={styles.employee__picture}
                   />
                   <h2 className={styles.employee__name}>{name}</h2>
-                  <p className={styles.employee__function}>{position}</p>
+                  <p className={styles.employee__function}>
+                    {position} | <a href={whatsappLink} target="_blank">Fale Comigo</a>
+                  </p>
                 </div>
               ))}
             </div>
