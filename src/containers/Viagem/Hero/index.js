@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import { urlFor } from '../../../sanity/imageUrl';
-import CTAButton from "../CTAButton";
+import CTAViagem from "../CTAViagem";
 
 import styles from './hero.module.scss';
 
@@ -19,7 +19,7 @@ export default function Hero({ coverImage, title, regionName, subRegionName }) {
         <h3>
           {regionName} - {subRegionName}
         </h3>
-        <CTAButton>Faça essa viagem</CTAButton>
+        <CTAViagem>Faça essa viagem</CTAViagem>
       </div>
     </header>
   )
