@@ -1,4 +1,4 @@
-import client from './client';
+import client, { getClient } from './client';
 
 export const getSubRegions = async () => {
   const subRegions = await client.fetch(`
@@ -109,9 +109,10 @@ export const getPagesGeral = async () => {
   return pagesGeral;
 };
 
-export const getPageHome = async () => {
-  const pageHome = await client.fetch(`
+export const getPageHome = async (preview) => {
+  const query = `
     *[_type=="home-page"]{
+      _id,
       tiles,
       presentationTitle,
       presentationSubtitle,
@@ -136,9 +137,10 @@ export const getPageHome = async () => {
         testimonials
       },
     }
-  `);
+  `
+  const pageHome = await getClient(preview).fetch(query);
 
-  return pageHome;
+  return { pageHome, query };
 };
 
 export const getCompanyInfo = async () => {

@@ -1,8 +1,16 @@
-import sanityClient from '@sanity/client';
+import { createClient } from 'next-sanity'
+import { config } from './config'
 
-export default sanityClient({
-  projectId: process.env.SANITY_PROJECT_ID,
-  dataset: process.env.SANITY_DATASET,
-  apiVersion: '2021-06-01',
+// Set up the client for fetching data in the getProps page functions
+const sanityClient = createClient(config);
+export default sanityClient;
+
+// Set up a preview client with serverless authentication for drafts
+export const previewClient = createClient({
+  ...config,
   useCdn: false,
-});
+  token: process.env.SANITY_API_TOKEN,
+})
+
+// Helper function for easily switching between normal client and preview client
+export const getClient = (usePreview) => (usePreview ? previewClient : sanityClient)

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 
 import ModalProvider from '../context/modalContext';
 
@@ -13,18 +14,35 @@ import MeetTheTeam from '../containers/Home/MeetTheTeam';
 
 import { getPageHome } from '../sanity/fetch';
 import Testimonials from '../components/Testimonials';
+import { usePreviewSubscription, filterDataToSingleItem } from '../sanity/previewHelpers';
 
-export const getStaticProps = async () => {
-  const pageHomeData = await getPageHome();
+export const getStaticProps = async ({ preview = false }) => {
+  console.log('preview :>> ', preview);
+  const { pageHome, query } = await getPageHome(preview);
+
+  if (!pageHome) return { notFound: true }
+
+  const pageHomeData = filterDataToSingleItem(pageHome, preview);
 
   return {
     props: {
-      data: pageHomeData[0]
+      preview,
+      data: { pageHomeData, query }
     }
   }
 }
 
-export default function Home({ data }) {
+export default function Home({ data, preview }) {
+  const { data: previewData } = usePreviewSubscription(data?.query, {
+    params: data?.queryParams ?? {},
+    // The hook will return this on first render
+    // This is why it's important to fetch *draft* content server-side!
+    initialData: data?.pageHomeData,
+    // The passed-down preview context determines whether this function does anything
+    enabled: preview,
+  })
+
+  const pageData = filterDataToSingleItem(previewData, preview)
 
   return (
     <ModalProvider>
@@ -37,16 +55,17 @@ export default function Home({ data }) {
         <BuyModal />
 
         <Hero>
-          <Header tiles={data.tiles} />
+          <Header tiles={pageData.tiles} />
         </Hero>
 
         {/* TODO passar só os itens específicos x o objeto inteiro afeta quanto a performance?  */}
-        <Experiences data={data} />
-        <About data={data} />
-        <Destinations data={data} />
-        <MeetTheTeam data={data.team[0]} />
-        <Testimonials data={data.testimonials[0]} />
+        <Experiences data={pageData} />
+        <About data={pageData} />
+        <Destinations data={pageData} />
+        <MeetTheTeam data={pageData.team[0]} />
+        <Testimonials data={pageData.testimonials[0]} />
       </Layout>
+      {preview && <Link href="/api/exit-preview">Preview Mode Activated!</Link>}
     </ModalProvider>
   );
 }
