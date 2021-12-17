@@ -4,6 +4,8 @@ export default async (req, res) => {
   }
   // Check the secret and next parameters
   // This secret should only be known to this API route and the CMS
+
+  // TODO no local nao ta acessando o env, em prod tem que setar
   // if (req.query.secret !== process.env.SANITY_PREVIEW_SECRET) {
   if (req.query.secret !== '1234') {
     return res.status(401).json({ message: 'Invalid token' })
@@ -27,6 +29,8 @@ export default async (req, res) => {
 
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
+
+  // TODO algum redirecionamento dinamico caso queiramos habilitar para outras paginas futuramente
   res.writeHead(307, { Location: `/` })
 
   return res.end()
