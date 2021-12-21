@@ -13,7 +13,7 @@ export default function Testimonials({ data }) {
       <div className={utilStyles.container}>
         <Section.Title>{testimonialsTitle}</Section.Title>
         <div className={styles.wrapper}>
-          {testimonials.slice(0, 4).map(({ _key, name, photo, text }) => (
+          {testimonials && testimonials.slice(0, 4).map(({ _key, name, photo, text }) => (
             <div key={_key} className={styles.card}>
               <div className={styles.card__image}>
                 <img

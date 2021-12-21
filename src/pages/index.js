@@ -62,8 +62,8 @@ export default function Home({ data, preview }) {
         <Experiences data={pageData} />
         <About data={pageData} />
         <Destinations data={pageData} />
-        <MeetTheTeam data={pageData.team[0]} />
-        <Testimonials data={pageData.testimonials[0]} />
+        <MeetTheTeam data={pageData} />
+        <Testimonials data={pageData} />
       </Layout>
       {preview && <Link href="/api/exit-preview">Preview Mode Activated!</Link>}
     </ModalProvider>

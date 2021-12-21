@@ -126,16 +126,12 @@ export const getPageHome = async (preview) => {
       destinationsTitle,
       destinationsText,
       destinationsButtonText,
-      "team": *[_type=='team']{
-        teamTitle,
-        teamText,
-        employees
-      },
-      "testimonials": *[_type=='testimonials']{
-        testimonialsTitle,
-        testimonialsText,
-        testimonials
-      },
+      teamTitle,
+      teamText,
+      employees,
+      testimonialsTitle,
+      testimonialsText,
+      testimonials
     }
   `
   const pageHome = await getClient(preview).fetch(query);
