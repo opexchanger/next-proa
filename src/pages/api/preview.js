@@ -7,9 +7,12 @@ export default async (req, res) => {
   // This secret should only be known to this API route and the CMS
 
   // No local nao ta acessando o env
+  console.log('req.headers.host :>> ', req.headers.host);
+  console.log('req.query.secret :>> ', req.query.secret);
+  console.log('process.env.SANITY_PREVIEW_SECRET :>> ', process.env.SANITY_PREVIEW_SECRET);
   if (req.headers.host.startsWith('localhost')) {
     if (req.query.secret !== '1234') {
-      return res.status(401).json({ message: 'Invalid token' })
+      return res.status(401).json({ message: 'Invalid token in dev mode' })
     }
   } else {
     if (req.query.secret !== process.env.SANITY_PREVIEW_SECRET) {
