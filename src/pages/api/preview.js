@@ -1,5 +1,4 @@
 export default async (req, res) => {
-  console.log('req.query :>> ', req.query);
   if (!req?.query?.secret) {
     return res.status(401).json({ message: 'No token' })
   }
@@ -7,9 +6,6 @@ export default async (req, res) => {
   // This secret should only be known to this API route and the CMS
 
   // No local nao ta acessando o env
-  console.log('req.headers.host :>> ', req.headers.host);
-  console.log('req.query.secret :>> ', req.query.secret);
-  console.log('process.env.SANITY_PREVIEW_SECRET :>> ', process.env.SANITY_PREVIEW_SECRET);
   if (req.headers.host.startsWith('localhost')) {
     if (req.query.secret !== '1234') {
       return res.status(401).json({ message: 'Invalid token in dev mode' })
@@ -29,10 +25,7 @@ export default async (req, res) => {
 
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-  const redirect = `${req?.query?.directory || ''}/${req?.query?.slug}` ?? `/`;
-  console.log('redirect :>> ', redirect);
 
-  // TODO algum redirecionamento dinamico caso queiramos habilitar para outras paginas futuramente
   res.writeHead(307, { Location: `${req?.query?.directory || ''}/${req?.query?.slug}` ?? `/` })
 
   return res.end()

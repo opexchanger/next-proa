@@ -62,7 +62,7 @@ export default function Viagem({ data, preview }) {
   const viagem = filterDataToSingleItem(previewData, preview);
 
   // gotta parse the data again when it's being previewed
-  if (preview) {
+  if (preview && !viagem.duration) {
     viagem.duration = intervalToDuration({
       start: new Date(viagem.departureDate),
       end: new Date(viagem.returnDate),
