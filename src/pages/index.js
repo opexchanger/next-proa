@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 
 import ModalProvider from '../context/modalContext';
 
@@ -11,13 +10,13 @@ import Destinations from '../containers/Home/Destinations';
 import BuyModal from '../containers/Home/BuyModal';
 import Header from '../containers/Home/Header';
 import MeetTheTeam from '../containers/Home/MeetTheTeam';
+import ExitPreview from '../components/ExitPreview';
 
 import { getPageHome } from '../sanity/fetch';
 import Testimonials from '../components/Testimonials';
 import { usePreviewSubscription, filterDataToSingleItem } from '../sanity/previewHelpers';
 
 export const getStaticProps = async ({ preview = false }) => {
-  console.log('preview :>> ', preview);
   const { pageHome, query } = await getPageHome(preview);
 
   if (!pageHome) return { notFound: true }
@@ -65,7 +64,10 @@ export default function Home({ data, preview }) {
         <MeetTheTeam data={pageData} />
         <Testimonials data={pageData} />
       </Layout>
-      {preview && <Link href="/api/exit-preview">Preview Mode Activated!</Link>}
+
+      {preview &&
+        <ExitPreview />
+      }
     </ModalProvider>
   );
 }

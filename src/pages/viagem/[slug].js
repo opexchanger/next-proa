@@ -8,9 +8,11 @@ import TravelBadges from '../../containers/Viagem/TravelBadges';
 import TravelContent from '../../containers/Viagem/TravelContent';
 import Gallery from '../../components/Gallery';
 import CTAButton from '../../containers/Viagem/CTAViagem';
+import ExitPreview from '../../components/ExitPreview';
 
 import ModalProvider from '../../context/modalContext';
 import { getAllTravels, getOneTravel } from '../../sanity/fetch';
+import { usePreviewSubscription, filterDataToSingleItem } from '../../sanity/previewHelpers';
 
 import styles from './viagem.module.scss';
 
@@ -24,25 +26,50 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const result = await getOneTravel(params.slug);
-  const viagem = result[0];
+export async function getStaticProps({ params, preview = false }) {
+  const { travelResult, query } = await getOneTravel(params.slug, preview);
 
-  viagem.duration = intervalToDuration({
-    start: new Date(viagem.departureDate),
-    end: new Date(viagem.returnDate),
+  if (!travelResult) return { notFound: true }
+
+  const travel = filterDataToSingleItem(travelResult, preview);
+
+  travel.duration = intervalToDuration({
+    start: new Date(travel.departureDate),
+    end: new Date(travel.returnDate),
   }).days;
-  viagem.departureDate = format(new Date(viagem.departureDate), 'dd/MM');
-  viagem.returnDate = format(new Date(viagem.returnDate), 'dd/MM');
+  travel.departureDate = format(new Date(travel.departureDate), 'dd/MM');
+  travel.returnDate = format(new Date(travel.returnDate), 'dd/MM');
 
   return {
     props: {
-      viagem,
+      preview,
+      data: { travel, query, params },
     },
   };
 }
 
-export default function Viagem({ viagem }) {
+export default function Viagem({ data, preview }) {
+  console.log('preview :>> ', preview);
+  const { data: previewData } = usePreviewSubscription(data?.query, {
+    params: data?.params ?? {},
+    // The hook will return this on first render
+    // This is why it's important to fetch *draft* content server-side!
+    initialData: data?.travel,
+    // The passed-down preview context determines whether this function does anything
+    enabled: preview,
+  })
+
+  const viagem = filterDataToSingleItem(previewData, preview);
+
+  // gotta parse the data again when it's being previewed
+  if (preview) {
+    viagem.duration = intervalToDuration({
+      start: new Date(viagem.departureDate),
+      end: new Date(viagem.returnDate),
+    }).days;
+    viagem.departureDate = format(new Date(viagem.departureDate), 'dd/MM');
+    viagem.returnDate = format(new Date(viagem.returnDate), 'dd/MM');
+  }
 
   const {
     title,
@@ -51,7 +78,7 @@ export default function Viagem({ viagem }) {
     subRegionName,
     content,
     gallery
-  } = viagem;
+  } = { ...viagem };
 
   return (
     <ModalProvider>
@@ -82,6 +109,9 @@ export default function Viagem({ viagem }) {
 
       </Layout>
 
+      {preview &&
+        <ExitPreview />
+      }
     </ModalProvider>
   );
 }

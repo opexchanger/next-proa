@@ -8,7 +8,6 @@ import styles from './dropdown.module.scss';
 export default function Dropdown({ open, setOpen, node, children }) {
 
   const handleClick = (e) => {
-    console.log(node.current);
     if (node.current.contains(e.target)) {
       // inside click
       return;

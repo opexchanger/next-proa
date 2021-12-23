@@ -60,39 +60,38 @@ export const getCategories = async () => {
   return categories;
 };
 
-export const getOneTravel = async (slug) => {
-  const travel = await client.fetch(
-    `
-      *[ _type == "travel" && slug.current == $slug] {
-        title,
-        "slug": slug.current,
-        type,
-        coverImage,
-        content,
-        price,
-        installments,
-        tax,
-        departureDate,
-        returnDate,
-        boardingPlace,
-        hasAereo,
-        hasBlock,
-        hasGuide,
-        hasChildFree,
-        childFree,
-        hasCortesy,
-        cortesy,
-        gallery,
-        "subRegionId": subRegion->_id,
-        "subRegionName": subRegion->name,
-  			"regionId": subRegion -> region -> _id,
-  			"regionName": subRegion -> region -> name
-      }
-    `,
-    { slug }
-  );
+export const getOneTravel = async (slug, preview) => {
+  const query = `
+    *[ _type == "travel" && slug.current == $slug] {
+      _id,
+      title,
+      "slug": slug.current,
+      type,
+      coverImage,
+      content,
+      price,
+      installments,
+      tax,
+      departureDate,
+      returnDate,
+      boardingPlace,
+      hasAereo,
+      hasBlock,
+      hasGuide,
+      hasChildFree,
+      childFree,
+      hasCortesy,
+      cortesy,
+      gallery,
+      "subRegionId": subRegion->_id,
+      "subRegionName": subRegion->name,
+      "regionId": subRegion -> region -> _id,
+      "regionName": subRegion -> region -> name
+    }
+  `
+  const travelResult = await getClient(preview).fetch(query, { slug });
 
-  return travel;
+  return { travelResult, query };
 };
 
 export const getPagesGeral = async () => {
