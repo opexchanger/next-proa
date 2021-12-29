@@ -9,20 +9,21 @@
 }
 
 .price {
-  max-width: 94px;
-  width: 94px;
+  // max-width: 94px;
   // TODO test if gap
   // margin-right: 2rem;
   display: flex;
   flex-direction: column;
   align-self: center;
   text-align: center;
+  position: relative;
   & > * {
     margin: 0;
   }
 
   h5 {
     font-weight: 400;
+    margin-bottom: -5px;
     span {
       color: $color-white;
       background-color: $color-auxiliar-3;
@@ -36,6 +37,31 @@
     margin: -1.5rem 0;
     span {
       font-size: 1.6rem;
+    }
+  }
+
+  &Risked {
+    font-size: 2rem;
+    position: relative;
+    width: fit-content;
+    align-self: flex-end;
+    margin-bottom: -9px;
+    span {
+      font-size: 1.1rem;
+    }
+
+    &::before {
+      background: red;
+      opacity: 0.7;
+      content: '';
+      width: 110%;
+      position: absolute;
+      height: 0.1em;
+      border-radius: 0.1em;
+      left: -6%;
+      z-index: 100000000;
+      top: 47%;
+      transform: rotate(-10deg);
     }
   }
 }

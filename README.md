@@ -75,3 +75,7 @@ status= 200
 então, por causa da parada da conversão da data, reparei que ele fica passando varias vezes pelo render do componente, simplesmente quando abre a página. fiz o teste aqui com a pagina index que nao tem essa mesma verificação por data, e de qualquer forma ela também renderiza 3 vezes, não sei se é alguma falta de otimização do próprio preview, algo normal, ou algo que eu tenho que corrigir rs
 
 Outro problema sobre isso: não deve ser coincidência, mas precisaria ser testado, que o tempo de build mais do que duplicou desde o preview adicionado nas duas páginas... ta chegando à 5 min. Aí uma coisa que pensei foi se talvez ter as condicionais de preview e no-preview na mesma página atrapalha, se eu poderia criar versões somente preview das páginas, pra linkar no cms, e se isso aliviaria alguma coisa. Mas é questão de tirar um tempo e fazer uns testes realmente, pq teria que ser testado em prod
+
+https://www.sanity.io/docs/document-actions-api
+https://www.sanity.io/docs/transactions
+https://www.sanity.io/docs/webhooks

@@ -1,4 +1,5 @@
 import Badge from "../../../components/Badge";
+import DiscountTag from "../../../components/DiscountTag";
 
 import styles from './travel-badges.module.scss';
 
@@ -13,7 +14,11 @@ export default function TravelBadges({ travel }) {
     cortesy,
     hasBlock,
     price,
-    installments
+    installments,
+    hasDiscount,
+    discount,
+    oldPrice,
+    valueOff
   } = travel;
 
   return (
@@ -56,16 +61,35 @@ export default function TravelBadges({ travel }) {
           text={<h5>Bloqueio</h5>}
         />
       )}
-      <div className={styles.price}>
-        <h5>A partir de</h5>
-        <h2 className={styles.priceTag}>
-          <span>R$</span>
-          {price}
-        </h2>
-        <h5>
-          Em até <span>{installments}x</span>
-        </h5>
-      </div>
+      {hasDiscount ? (
+        <div className={styles.price}>
+          <h5>A partir de</h5>
+          <h2 className={styles.priceRisked}>
+            <span>R$</span>
+            {oldPrice}
+          </h2>
+          <h2 className={styles.priceTag}>
+            <span>R$</span>
+            {price}
+          </h2>
+          <h5>
+            Em até <span>{installments}x</span>
+          </h5>
+          <DiscountTag value={valueOff} format={discount.format} />
+        </div>
+      ) :
+        <div className={styles.price}>
+          <h5>A partir de</h5>
+          <h2 className={styles.priceTag}>
+            <span>R$</span>
+            {price}
+          </h2>
+          <h5>
+            Em até <span>{installments}x</span>
+          </h5>
+        </div>
+      }
+
     </div>
   )
 }

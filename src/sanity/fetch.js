@@ -71,6 +71,8 @@ export const getOneTravel = async (slug, preview) => {
       content,
       price,
       installments,
+      hasDiscount,
+      discount,
       tax,
       departureDate,
       returnDate,
