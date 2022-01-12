@@ -32,11 +32,11 @@ export async function getStaticProps({ params, preview = false }) {
 
   if (!travelResult) return { notFound: true }
 
-  let travel = filterDataToSingleItem(travelResult, preview);
+  const travel = filterDataToSingleItem(travelResult, preview);
   // tratamento dos dados da viagem feito aqui onde n recalcula em cada re-render
-  travel = getFormattedTravelDates(travel);
+  getFormattedTravelDates(travel);
   if (travel.hasDiscount) {
-    travel = getCalculatedDiscount(travel);
+    getCalculatedDiscount(travel);
   }
 
   return {
@@ -54,13 +54,13 @@ export default function Viagem({ data, preview }) {
     enabled: preview,
   })
 
-  let viagem = filterDataToSingleItem(previewData, preview);
+  const travel = filterDataToSingleItem(previewData, preview);
   // gotta parse the data again when it's being previewed
-  if (preview && !viagem.duration) {
-    viagem = getFormattedTravelDates(viagem);
+  if (preview && !travel.duration) {
+    getFormattedTravelDates(travel);
   }
-  if (preview && viagem.hasDiscount) {
-    viagem = getCalculatedDiscount(viagem);
+  if (preview && travel.hasDiscount) {
+    getCalculatedDiscount(travel);
   }
 
   const {
@@ -70,7 +70,7 @@ export default function Viagem({ data, preview }) {
     subRegionName,
     content,
     gallery
-  } = { ...viagem };
+  } = { ...travel };
 
   return (
     <ModalProvider>
@@ -81,11 +81,11 @@ export default function Viagem({ data, preview }) {
 
         {/* TODO trocar o botão CTA nessa página pra rosa com azul */}
         <Hero coverImage={coverImage} title={title} regionName={regionName} subRegionName={subRegionName} />
-        <BuyModal travel={viagem} />
+        <BuyModal travel={travel} />
 
         <section className={styles.destino__body}>
           <div className={styles.container}>
-            <TravelBadges travel={viagem} />
+            <TravelBadges travel={travel} />
             <TravelContent content={content} />
             <Gallery images={gallery} />
             <CTAButton selfCenter>Faça essa viagem</CTAButton>

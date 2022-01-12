@@ -1,7 +1,11 @@
+import { useEffect, useState } from 'react';
+import { isFuture, isPast } from 'date-fns'
+
 import Badge from "../../../components/Badge";
 import DiscountTag from "../../../components/DiscountTag";
 
 import styles from './travel-badges.module.scss';
+import Timer from '../../../components/Timer';
 
 export default function TravelBadges({ travel }) {
   const {
@@ -21,20 +25,33 @@ export default function TravelBadges({ travel }) {
     valueOff
   } = travel;
 
+  const [discountActive, setDiscountActive] = useState(hasDiscount);
+
+  useEffect(() => {
+    if (hasDiscount && discount.hasSchedule) {
+      const discountExpirationDate = new Date(discount.schedule.endDate);
+      const discountStartDate = discount.schedule.startDate ? new Date(discount.schedule.startDate) : null;
+
+      if (isFuture(discountStartDate) || isPast(discountExpirationDate)) {
+        setDiscountActive(false);
+      }
+    }
+  }, [])
+
   return (
     <div className={styles.infos}>
       <Badge span={departureDate} text={<h4>{duration} dias</h4>} />
       {hasAereo && (
         <Badge
           icon
-          span={<img src='/img/icons/plane.png' />}
+          span={<img src='/img/icons/plane.png' alt="Ícone avião" />}
           text={<p>Com aéreo</p>}
         />
       )}
       {hasChildFree && (
         <Badge
           icon
-          span={<img src='/img/icons/child.png' />}
+          span={<img src='/img/icons/child.png' alt="Ícone crianças" />}
           text={
             <p style={{ fontSize: '1.5rem' }}>
               {childFree.quantity} CHD FREE até {childFree.age} anos
@@ -45,7 +62,7 @@ export default function TravelBadges({ travel }) {
       {hasCortesy && (
         <Badge
           icon
-          span={<img src='/img/icons/coconut.png' />}
+          span={<img src='/img/icons/coconut.png' alt="Ícone Coqueiro de Praia" />}
           text={
             <>
               <h5>Cortesia</h5>
@@ -57,11 +74,11 @@ export default function TravelBadges({ travel }) {
       {hasBlock && (
         <Badge
           icon
-          span={<img src='/img/icons/lock.png' />}
+          span={<img src='/img/icons/lock.png' alt="Ícone cadeado" />}
           text={<h5>Bloqueio</h5>}
         />
       )}
-      {hasDiscount ? (
+      {discountActive ? (
         <div className={styles.price}>
           <h5>A partir de</h5>
           <h2 className={styles.priceRisked}>
@@ -89,6 +106,12 @@ export default function TravelBadges({ travel }) {
           </h5>
         </div>
       }
+
+      {discountActive && discount.schedule?.hasCountdown && (
+        <div className={styles.countdownWrapper}>
+          <Timer countUntil={discount.schedule.endDate} format={['days', 'hours', 'minutes']} />
+        </div>
+      )}
 
     </div>
   )

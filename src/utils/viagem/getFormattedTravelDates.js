@@ -7,6 +7,4 @@ export default function getFormattedTravelDates(travel) {
   }).days;
   travel.departureDate = format(new Date(travel.departureDate), 'dd/MM');
   travel.returnDate = format(new Date(travel.returnDate), 'dd/MM');
-
-  return travel;
 }

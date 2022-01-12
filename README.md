@@ -79,3 +79,24 @@ Outro problema sobre isso: não deve ser coincidência, mas precisaria ser testa
 https://www.sanity.io/docs/document-actions-api
 https://www.sanity.io/docs/transactions
 https://www.sanity.io/docs/webhooks
+
+### Descontos agendados
+
+ok a merda com datas e static generation, é que eu to checando a validade do desconto na hora do BUILD
+e aí vai estar lá, sei lá data de inicio da promoção daqui um dia, blz vamos colocar como false aqui por enquanto, mas e aí
+não rola nenhum build até o outro dia, vai continuar como false, a promoção não vai aparecer....
+se não pode ser no build, quando pode ser esse check? se for em real-time, tipo, dentro do componente... vai fazer o cálculo a cada re-render, não? vai tornar a página o quão pesada?
+outra alternativa seria tornar as viagens server-side... porém... as viagens provavelmente vão ser o conteúdo mais acessado do site, as api requests pro cms vão pra lua se deixar todas as viagens ssr...
+além disso, na página de 'categoria' das viagens, tb vai ser interessante que esses badges de desconto e timer apareceram.
+então, vai acabar tornando o site todo ssr
+sem falar que, o ssg é uma vantagem mt grande pra ser perdida só por causa de um little counter boi
+who would win
+
+mas agora algo pra COMEMORAR
+a lógica do schedule funciona PERFEITAMENTEEEE uhu, o maluco calcula
+
+### solução possibilidade
+
+eu acho, e é a minha ideia agora, que eu posso colocar o check da validação da data do desconto
+num useEffect com [], pra rodar uma vez quando monta a página. Assim, não vai ficar pesado de ficar rodando toda vez que renderiza o componente... Mas, se a página for atualizada, vai ser chamado de novo (certo? é isso, né? rs) então isso seria até que bem ideal...
+E da mesma forma o contador né, funciona em cima da mesma lógica. Hum, eu acho que iso tem uma boa possibilidade de funcionar :D

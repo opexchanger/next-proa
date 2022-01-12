@@ -59,9 +59,12 @@
       height: 0.1em;
       border-radius: 0.1em;
       left: -6%;
-      z-index: 100000000;
       top: 47%;
       transform: rotate(-10deg);
     }
   }
+}
+
+.countdownWrapper {
+  align-self: flex-end;
 }
