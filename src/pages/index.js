@@ -10,6 +10,7 @@ import Destinations from '../containers/Home/Destinations';
 import BuyModal from '../containers/Home/BuyModal';
 import Header from '../containers/Home/Header';
 import MeetTheTeam from '../containers/Home/MeetTheTeam';
+import NewsletterSignIn from '../components/NewsletterSignIn';
 import ExitPreview from '../components/ExitPreview';
 
 import { getPageHome } from '../sanity/fetch';
@@ -63,6 +64,7 @@ export default function Home({ data, preview }) {
         <Destinations data={pageData} />
         <MeetTheTeam data={pageData} />
         <Testimonials data={pageData} />
+        <NewsletterSignIn data={pageData} />
       </Layout>
 
       {preview &&

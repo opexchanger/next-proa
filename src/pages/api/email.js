@@ -5,7 +5,6 @@ export default async function handler(req, res) {
 
   try {
     const mailSent = await transporter.sendMail(message);
-    console.log(mailSent);
     res.status(200).end();
   } catch (error) {
     console.log('Solicitação Nodemailer não completada: >>>>>>');

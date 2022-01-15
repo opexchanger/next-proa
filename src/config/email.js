@@ -4,6 +4,7 @@ export const smtp = {
 }
 
 export const mailMessage = {
+  // TODO o 'to' pelo menos deve vir do CMS
   from: 'contact@impactinglifestyle.com',
   to: 'flavioneto96@gmail.com',
   replyTo: '',

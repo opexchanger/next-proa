@@ -132,7 +132,10 @@ export const getPageHome = async (preview) => {
       employees,
       testimonialsTitle,
       testimonialsText,
-      testimonials
+      testimonials,
+      newsletterTitle,
+      newsletterText,
+      newsletterConfig,
     }
   `
   const pageHome = await getClient(preview).fetch(query);
