@@ -7,7 +7,7 @@ import { ButtonLink } from '../../../components/Buttons';
 import styles from './destinations.module.scss';
 import utilStyles from '../../../styles/utils.module.scss';
 
-import regions from '../../../data/regions.preval';
+// import regions from '../../../data/regions.preval';
 import { useSelection } from '../../../context/selectionContext';
 import { urlFor } from '../../../sanity/imageUrl';
 
@@ -38,7 +38,7 @@ export default function Destinations({ data }) {
             <BlockContent blocks={destinationsText} />
           </p>
 
-          {regions.map((region) => {
+          {/* {regions.map((region) => {
             const { id, name, coverImage } = region;
 
             return (
@@ -50,7 +50,7 @@ export default function Destinations({ data }) {
                 handleClick={() => setSelectedRegion(region)}
               />
             );
-          })}
+          })} */}
 
           <ButtonLink to='/destinos/pacotes-de-viagem' style={{ marginTop: '2rem' }}>
             {destinationsButtonText}

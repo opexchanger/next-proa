@@ -9,12 +9,10 @@ import SelectOptions from '../../components/SelectOptions';
 import FullLoader from '../../components/Loaders/FullLoader';
 import { useSelection } from '../../context/selectionContext';
 
-
 // data from cms
 import categoriesData from '../../data/categories.preval';
 import travelsData from '../../data/travels.preval';
-import regionsData from '../../data/regions.preval';
-import subRegionsData from '../../data/subRegions.preval';
+import customRegionsData from '../../data/customRegions.preval';
 
 // styles
 import styles from './destinos.module.scss';
@@ -168,7 +166,9 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
 }
 
 export async function getStaticPaths() {
-  const paths = categoriesData.map(({ slug }) => ({ params: { category: slug } }));
+  const categoryPaths = categoriesData.map(({ slug }) => ({ params: { slug, isCategory: true } }));
+  const customRegionPaths = customRegionsData.map(({ slug }) => ({ params: { slug, isCustomRegion: true } }));
+  const paths = [...categoryPaths, ...customRegionPaths];
 
   return {
     paths,
@@ -177,6 +177,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  console.log('params.isCategory :>> ', params.isCategory);
+  console.log('params.isCustomRegion :>> ', params.isCustomRegion);
+
   const thisPageCategory = categoriesData.find((category) => category.slug === params.category);
 
   const categoryTravels = travelsData.filter((travel) => travel.categorySlug === thisPageCategory.slug);

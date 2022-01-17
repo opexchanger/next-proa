@@ -1,31 +1,36 @@
 import client, { getClient } from './client';
 
-export const getSubRegions = async () => {
-  const subRegions = await client.fetch(`
-    *[ _type == "subRegion" ]{
-      "id": _id,
-      name,
-      description,
-      coverImage,
-      isFeatured,
-      "regionId": region->_id,
-      "travelsCount": count(*[ _type == "travel" && references(^._id) ])
-    } [ travelsCount > 0 ]
-  `);
+// export const getSubRegions = async () => {
+//   const subRegions = await client.fetch(`
+//     *[ _type == "subRegion" ]{
+//       "id": _id,
+//       name,
+//       description,
+//       coverImage,
+//       isFeatured,
+//       "regionId": region->_id,
+//       "travelsCount": count(*[ _type == "travel" && references(^._id) ])
+//     } [ travelsCount > 0 ]
+//   `);
 
-  return subRegions;
-};
+//   return subRegions;
+// };
 
 export const getRegions = async () => {
   const regions = await client.fetch(`
-    *[ _type == "region" ]{
-      "id": _id,
-      name,
+    *[_type=="commercialRegion"] {
+      title,
+      slug,
       description,
-      coverImage,
+      category,
+      groupBy,
+      groupCondition,
+      countrySelection,
+      stateSelection,
+      citySelection,
       isFeatured,
-  		"travelsCount": count(*[ _type == "travel" && references(^._id) ])
-    }[ travelsCount > 0 ]
+      coverImage
+    }
   `);
 
   return regions;
@@ -59,6 +64,26 @@ export const getCategories = async () => {
 
   return categories;
 };
+
+export const getCustomRegion = async () => {
+  const customRegions = await client.fetch(`
+    *[_type=="commercialRegion"] {
+      name,
+      slug,
+      description,
+      category,
+      groupBy,
+      groupCondition,
+      countrySelection,
+      stateSelection,
+      citySelection,
+      isFeatured,
+      coverImage
+    }
+  `);
+
+  return customRegions;
+}
 
 export const getOneTravel = async (slug, preview) => {
   const query = `
