@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik';
 
 import formSchema from './formSchema';
-import { InputField, SelectField, TextArea, ButtonSubmit, ErrorDisplay, Label } from '../../../components/Form';
+import { InputField, SelectField, TextArea, ButtonSubmit, ErrorDisplay, Label } from '../../../components/Form/ContactForm';
 import handleFormSubmit from '../../../utils/viagem/handleFormSubmit';
 import SpinLoader from '../../../components/Loaders/SpinLoader';
 
@@ -31,7 +31,7 @@ export default function BuyForm({ data }) {
     >
       {({ isValid, dirty, isSubmitting, status }) => (
 
-        !status ?
+        !status ? (
           <Form className={`${styles.form} ${isSubmitting ? styles.submitting : ''}`}>
             <ErrorDisplay name="firstName" required />
             <ErrorDisplay name="lastName" />
@@ -75,9 +75,10 @@ export default function BuyForm({ data }) {
             </ButtonSubmit>
             {isSubmitting && <SpinLoader />}
           </Form>
-          :
-          (<div className={`${styles.form__result} ${status.result === 'success' ? styles.success : styles.fail}`} dangerouslySetInnerHTML={{ __html: status.html }} >
-          </div>)
+        ) : (
+          <div className={`${styles.form__result} ${status.result === 'success' ? styles.success : styles.fail}`}
+            dangerouslySetInnerHTML={{ __html: status.html }} />
+        )
       )
       }
     </Formik >

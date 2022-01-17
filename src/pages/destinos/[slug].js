@@ -43,7 +43,6 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
     }
   }, [selectedRegion]);
 
-  // TODO limpar o listener no retorno
   useEffect(() => {
     setLoader(false);
     Router.events.on("routeChangeStart", () => {
@@ -54,6 +53,16 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
     Router.events.on("routeChangeComplete", () => {
       setLoader(false);
     });
+
+    return () => {
+      Router.events.off("routeChangeStart", () => {
+        setSelectedSubRegion(0);
+        setLoader(true);
+      });
+      Router.events.off("routeChangeComplete", () => {
+        setLoader(false);
+      });
+    }
   }, []);
 
 

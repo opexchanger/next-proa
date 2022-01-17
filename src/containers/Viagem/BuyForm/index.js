@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik';
 
 import formSchema from './formSchema';
-import { InputField, SelectField, TextArea, ButtonSubmit, ErrorDisplay, Label } from '../../../components/Form';
+import { InputField, SelectField, TextArea, ButtonSubmit, ErrorDisplay, Label } from '../../../components/Form/ContactForm';
 import handleFormSubmit from '../../../utils/viagem/handleFormSubmit';
 import SpinLoader from '../../../components/Loaders/SpinLoader';
 
