@@ -100,3 +100,29 @@ a lógica do schedule funciona PERFEITAMENTEEEE uhu, o maluco calcula
 eu acho, e é a minha ideia agora, que eu posso colocar o check da validação da data do desconto
 num useEffect com [], pra rodar uma vez quando monta a página. Assim, não vai ficar pesado de ficar rodando toda vez que renderiza o componente... Mas, se a página for atualizada, vai ser chamado de novo (certo? é isso, né? rs) então isso seria até que bem ideal...
 E da mesma forma o contador né, funciona em cima da mesma lógica. Hum, eu acho que iso tem uma boa possibilidade de funcionar :D
+
+### mergear 2 documentos diferentes na mesma rota
+
+Como eu criei a possibilidade de 'regiões personalizadas', que são como condições pra filtro ou junção de destinos, eles tb vão ter sua página assim como a categoria.
+O layout da página vai ser igual... Então sei lá, por enquanto pelo menos eu to vendo como melhor jeito colocar os dois na mesma.
+Até pq anaisando mais fundo o 'customRegions' meio que é uma categoria com mais opções. Deveriam ser duas páginas separadas? O next parece não ter uma expectativa
+nativa de que esse modelo seja seguido, pq eu passando tanto categorias quanto customRegions do getStaticPaths pro getStaticProps, ele não deixa passar nenhum outro dado dentro dos params. Então não tenho como passar nenhum indicador de que é um ou outro. Por isso coloquei esses prefixos, pra tirar eles no getStaticProps e saber como lidar de forma diferente com cada um
+
+nope... não é assim que funciona. Assim ele somente vai pré-gerar páginas com o slug de cat-cruzeiro, por exemplo. É, isso não me ajuda em nada.
+Que caralho irmão, tenho somente um slug, um mero slug, e com isso tenho que decidir dois cursos de ação diferentes. Acho que ainda sobra a opção de simplesmente procurar pelos slugs dentro de categoria e dentro de customRegion, mas não tem garantia de unicidade entre os slugs de categorias e de customRegions né, e não sei se tenho como forçar isso.
+O dia que um usuário colocar o mesmo nome numa categoria que numa customRegion daí fodeu, n é o que eu quero.
+
+okkk, so
+slug de customRegion no sanity agora é único entre todos os documentos. Então, um simples check pra ver em qual array achamos o slug, vai nos dizer com certeza a qual dos grupos o documento pertence
+
+### percalços para documentar
+
+como dar push num array dentro do componente
+
+como desestruturar para variáveis que já existem
+
+como abstrair lógicas que usam o context, para fora do componente
+-> fiz um custom hook, chamando o context nele, criando um monte de função, e retornando todas elas num objeto
+acho que to começando a entender melhor o custom hook, é meio que um outro componente, mas que na vdd é o teu primeiro componente kkkk
+pq é literalmente só tirar dele uma parte que ta ocupando mt espaço ou q pode ser reaproveitada
+e importar isso do outro arquivo
