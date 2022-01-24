@@ -1,107 +1,42 @@
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import { Router } from 'next/router';
+import { useEffect } from 'react';
 
 // components
 import Layout from '../../containers/Layout';
+import Hero from '../../components/Hero';
 import BlocksGrid from '../../components/BlocksGrid';
 import SelectOptions from '../../components/SelectOptions';
 import FullLoader from '../../components/Loaders/FullLoader';
-import { useSelection } from '../../context/selectionContext';
+
+//helpers
+import { handleCategory, handleCustomRegion } from '../../utils/destinoDataHandlers';
+import useSelectionMethods from '../../utils/hooks/useSelectionMethods';
+import useChangingRoutesLoader from '../../utils/hooks/useChangingRoutesLoader';
 
 // data from cms
 import categoriesData from '../../data/categories.preval';
-import travelsData from '../../data/travels.preval';
 import customRegionsData from '../../data/customRegions.preval';
 
 // styles
 import styles from './destinos.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
-import Hero from '../../components/Hero';
 
-export default function Destinos({ category, categoryTravels, categoryRegions, categorySubRegions }) {
+export default function Destinos({ category, travels, countries, states, cities }) {
+  const { resetSubRegions, selectedCountry, setSelectedCountry, selectedState, setSelectedState,
+    filterStates, selectedCity, setSelectedCity, filterCities, filterTravels }
+    = useSelectionMethods();
 
-  const allRegions = {
-    id: 0,
-    name: 'Todas',
-    travelsCount: categoryTravels.length
-  };
-
-  const {
-    selectedRegion,
-    setSelectedRegion,
-    selectedSubRegion,
-    setSelectedSubRegion,
-  } = useSelection();
-
-  const [isLoading, setLoader] = useState(true);
-
-  // TODO fazer os menus enviarem já o allRegions?
-  useEffect(() => {
-    if (!selectedRegion) {
-      setSelectedRegion(allRegions);
-    }
-  }, [selectedRegion]);
+  const [isLoading, setLoader] = useChangingRoutesLoader({ onChangeStart: resetSubRegions });
 
   useEffect(() => {
-    setLoader(false);
-    Router.events.on("routeChangeStart", () => {
-      setSelectedSubRegion(0);
-      setLoader(true);
-    });
-
-    Router.events.on("routeChangeComplete", () => {
-      setLoader(false);
-    });
-
-    return () => {
-      Router.events.off("routeChangeStart", () => {
-        setSelectedSubRegion(0);
-        setLoader(true);
-      });
-      Router.events.off("routeChangeComplete", () => {
-        setLoader(false);
-      });
+    if (!selectedCountry) {
+      setSelectedCountry(countries[0]);
     }
-  }, []);
-
-
-  const setRegion = (region) => {
-    setSelectedSubRegion(0);
-    setSelectedRegion(region);
-  };
-
-  const filterSubRegions = () => {
-    if (selectedRegion.id === 0) {
-      return categorySubRegions;
-    }
-    return categorySubRegions.filter(
-      (subRegion) => subRegion.regionId === selectedRegion.id
-    );
-  };
-
-  const filterTravels = () => {
-    if (selectedRegion.id === 0 && selectedSubRegion === 0) {
-      return categoryTravels;
-    }
-    if (selectedSubRegion !== 0) {
-      return categoryTravels.filter(
-        (travel) => travel.subRegionId === selectedSubRegion.id
-      );
-    }
-    return categoryTravels.filter(
-      (travel) => travel.regionId === selectedRegion.id
-    );
-  };
-
-  // TODO alguma coisa mais automatizada? ss, o useRouter
-  const pageName = () => {
-    if (category.slug !== 'pacotes-de-viagem') return category.slug;
-    return selectedRegion.name;
-  }
+  }, [selectedCountry]);
 
   return (
-    <Layout page={pageName()}>
+    // TODO automatizar o pageName ?
+    <Layout page={category.title}>
       <Head>
         <title>{category.title} | Proa Viagens</title>
       </Head>
@@ -123,10 +58,9 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
                 <h2 className={styles.select__title}>Selecione a região</h2>
                 <SelectOptions
                   primary
-                  options={categoryRegions}
-                  withExtra={allRegions}
-                  selected={selectedRegion?.id}
-                  handleClick={setRegion}
+                  options={countries}
+                  selected={selectedCountry?.id}
+                  handleClick={setSelectedCountry}
                 />
               </div>
             </header>
@@ -137,14 +71,14 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
                   className={[styles.select, styles.selectSecondary].join(' ')}
                 >
                   <h2 className={styles.select__title}>
-                    Exibindo {selectedRegion?.name}
+                    Exibindo {selectedCountry?.title}
                   </h2>
 
                   <SelectOptions
                     secondary
-                    options={filterSubRegions()}
-                    selected={selectedSubRegion?.id}
-                    handleClick={setSelectedSubRegion}
+                    options={filterStates(states)}
+                    selected={selectedState?.id}
+                    handleClick={setSelectedState}
                   />
                 </aside>
 
@@ -155,14 +89,14 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
                       utilStyles.mbottom0,
                     ].join(' ')}
                   >
-                    {selectedSubRegion?.name || selectedRegion?.name}
+                    {selectedState?.title || selectedCountry?.title}
                   </h2>
                   <p className={styles.selecionado__subtitle}>
-                    {selectedRegion?.description ||
-                      selectedSubRegion?.description ||
+                    {selectedCountry?.description ||
+                      selectedState?.description ||
                       'Consectetur adipisicing elit. Hic!'}
                   </p>
-                  <BlocksGrid blocks={filterTravels()}
+                  <BlocksGrid blocks={filterTravels(travels)}
                     blockClick={() => document.querySelector('#destinos_body').scrollIntoView()} />
                 </main>
               </div>
@@ -175,8 +109,9 @@ export default function Destinos({ category, categoryTravels, categoryRegions, c
 }
 
 export async function getStaticPaths() {
-  const categoryPaths = categoriesData.map(({ slug }) => ({ params: { slug, isCategory: true } }));
-  const customRegionPaths = customRegionsData.map(({ slug }) => ({ params: { slug, isCustomRegion: true } }));
+  const categoryPaths = categoriesData.map(({ slug }) => ({ params: { slug } }));
+  const customRegionPaths = customRegionsData.map(({ slug }) => ({ params: { slug } }));
+
   const paths = [...categoryPaths, ...customRegionPaths];
 
   return {
@@ -186,31 +121,23 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log('params.isCategory :>> ', params.isCategory);
-  console.log('params.isCustomRegion :>> ', params.isCustomRegion);
-
-  const thisPageCategory = categoriesData.find((category) => category.slug === params.category);
-
-  const categoryTravels = travelsData.filter((travel) => travel.categorySlug === thisPageCategory.slug);
-
-  const categoryRegions = regionsData.filter((region) => {
-    const foundTravelsInThisRegion = categoryTravels.filter((travel) => travel.regionId === region.id);
-    region.travelsCount = foundTravelsInThisRegion.length;
-    return region.travelsCount;
-  });
-
-  const categorySubRegions = subRegionsData.filter((subRegion) => {
-    const foundTravelsInThisSubRegion = categoryTravels.filter((travel) => travel.subRegionId === subRegion.id);
-    subRegion.travelsCount = foundTravelsInThisSubRegion.length;
-    return subRegion.travelsCount;
-  });
+  let category, travels, countries, states, cities;
+  // determinar se o slug pertence à uma categoria ou customRegion
+  const currentCategory = categoriesData.find((category) => category.slug === params.slug);
+  if (currentCategory) {
+    ({ category, travels, countries, states, cities } = handleCategory(currentCategory));
+  } else {
+    const currentCustomRegion = customRegionsData.find((customRegion) => customRegion.slug === params.slug);
+    ({ category, travels, countries, states, cities } = await handleCustomRegion(currentCustomRegion));
+  }
 
   return {
     props: {
-      categoryTravels,
-      categoryRegions,
-      categorySubRegions,
-      category: thisPageCategory
+      category,
+      travels,
+      countries,
+      states,
+      cities
     },
   };
 }

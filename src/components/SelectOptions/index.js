@@ -2,7 +2,6 @@ import styles from './select-options.module.scss';
 
 export default function SelectOptions({
   options,
-  withExtra,
   selected,
   handleClick,
   primary,
@@ -16,36 +15,20 @@ export default function SelectOptions({
         `}
       {...restProps}
     >
-      {withExtra && (
-        <li
-          key={withExtra.id}
-          className={styles.select__item}
-          onClick={() => handleClick(withExtra)}
-        >
-          <p
-            className={`${styles.select__link} ${
-              withExtra.id === selected ? styles.active : ''
-            }`}
-          >
-            {withExtra.name} <span>{withExtra.travelsCount}</span>
-          </p>
-        </li>
-      )}
       {options.map((option) => {
-        const { id, name, travelsCount } = option;
+        const { id, title, travelsCount } = option;
 
         return (
           <li
             key={id}
             className={styles.select__item}
-            onClick={() => handleClick(option)}
           >
             <p
-              className={`${styles.select__link} ${
-                id === selected ? styles.active : ''
-              }`}
+              onClick={() => handleClick(option)}
+              className={`${styles.select__link} ${id === selected ? styles.active : ''
+                }`}
             >
-              {name} <span>{travelsCount}</span>
+              {title} <span>{travelsCount}</span>
             </p>
           </li>
         );

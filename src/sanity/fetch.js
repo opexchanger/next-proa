@@ -1,39 +1,55 @@
 import client, { getClient } from './client';
 
-// export const getSubRegions = async () => {
-//   const subRegions = await client.fetch(`
-//     *[ _type == "subRegion" ]{
-//       "id": _id,
-//       name,
-//       description,
-//       coverImage,
-//       isFeatured,
-//       "regionId": region->_id,
-//       "travelsCount": count(*[ _type == "travel" && references(^._id) ])
-//     } [ travelsCount > 0 ]
-//   `);
-
-//   return subRegions;
-// };
-
-export const getRegions = async () => {
-  const regions = await client.fetch(`
-    *[_type=="commercialRegion"] {
+export const getAllCountries = async () => {
+  const countries = await client.fetch(`
+    *[ _type == "country" ] {
+      "id": _id,
       title,
-      slug,
       description,
-      category,
-      groupBy,
-      groupCondition,
-      countrySelection,
-      stateSelection,
-      citySelection,
       isFeatured,
       coverImage
     }
   `);
 
-  return regions;
+  return countries;
+};
+
+export const getStatesInCountry = async (countryId) => {
+  const states = await client.fetch(`
+    *[ _type == "state" && country._ref == $countryId] {
+      "id": _id,
+      title,
+      description,
+      isFeatured,
+      coverImage,
+      "countryId": country->_id,
+      "countryName": country->title,
+    }
+  `, {
+    countryId
+  });
+
+  return states;
+};
+
+export const getCitiesInCountry = async (countryId) => {
+  const cities = await client.fetch(`
+    *[ _type == "city" && country._ref == $countryId] {
+      "id": _id,
+      title,
+      description,
+      isFeatured,
+      coverImage,
+      "stateId": state->_id,
+      "stateName": state->title,
+      "countryId": country->_id,
+      "countryName": country->title,
+    }
+  `, {
+    countryId
+  });
+
+  return cities;
 };
 
 export const getAllTravels = async () => {
@@ -44,6 +60,13 @@ export const getAllTravels = async () => {
       "slug": slug.current,
       "categorySlug": category -> slug.current,
       coverImage,
+      "cityId": city->_id,
+      "cityName": city->title,
+      "stateId": city->state->_id,
+      "stateName": city->state->title,
+      "countryId": city->country->_id,
+      "countryName": city->country->title,
+
       "subRegionId": subRegion->_id,
       "regionId": subRegion -> region -> _id,
     }
@@ -51,39 +74,6 @@ export const getAllTravels = async () => {
 
   return travels;
 };
-
-export const getCategories = async () => {
-  const categories = await client.fetch(`
-    *[ _type == "category" ] {
-      "id": _id,
-      title,
-      description,
-      "slug": slug.current
-    }
-  `);
-
-  return categories;
-};
-
-export const getCustomRegion = async () => {
-  const customRegions = await client.fetch(`
-    *[_type=="commercialRegion"] {
-      name,
-      slug,
-      description,
-      category,
-      groupBy,
-      groupCondition,
-      countrySelection,
-      stateSelection,
-      citySelection,
-      isFeatured,
-      coverImage
-    }
-  `);
-
-  return customRegions;
-}
 
 export const getOneTravel = async (slug, preview) => {
   const query = `
@@ -110,6 +100,13 @@ export const getOneTravel = async (slug, preview) => {
       hasCortesy,
       cortesy,
       gallery,
+      "cityId": city->_id,
+      "cityName": city->title,
+      "stateId": city->state->_id,
+      "stateName": city->state->title,
+      "countryId": city->country->_id,
+      "countryName": city->country->title,
+      
       "subRegionId": subRegion->_id,
       "subRegionName": subRegion->name,
       "regionId": subRegion -> region -> _id,
@@ -120,6 +117,41 @@ export const getOneTravel = async (slug, preview) => {
 
   return { travelResult, query };
 };
+
+export const getCategories = async () => {
+  const categories = await client.fetch(`
+    *[ _type == "category" ] {
+      "id": _id,
+      title,
+      description,
+      "slug": slug.current
+    }
+  `);
+
+  return categories;
+};
+
+export const getCustomRegions = async () => {
+  const customRegions = await client.fetch(`
+    *[_type=="customRegion"] {
+      title,
+      "slug": slug.current,
+      description,
+      filterBy,
+      filterCondition,
+      countryReference,
+      'countrySelection': countrySelection[]->_id,
+      'stateSelection': stateSelection[]->_id,
+      'citySelection': citySelection[]->_id,
+      isFeatured,
+      showEmpty,
+      coverImage,
+      "categoryId": category->_id,
+    }
+  `);
+
+  return customRegions;
+}
 
 export const getPagesGeral = async () => {
   const pagesGeral = await client.fetch(`

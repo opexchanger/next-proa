@@ -88,9 +88,14 @@
       margin-top: 2px;
     }
 
+    & .select__container {
+      justify-content: center;
+    }
+
     & .select__title {
       @media (min-width: 900px) {
         margin-bottom: 0;
+        margin-right: 3rem;
       }
     }
 
