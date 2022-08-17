@@ -25,21 +25,20 @@ O padrão de subRegion é '0' por nenhum motivo específico mesmo, só foi defin
 
 São utilizadas as próprias funções do context pra sempre alternar as regiões, só o setRegion tem um wrapper a mais pq quando seta uma região desselecionada todas as subRegiões. Mas se é setado direto no context, pq se eu vou pra home e volto não continua marcado o que estava?
 
-Pq as funções todas de /destino precisam ta dentro do function component? Pq pra gente ter acesso ao Hook useSelection, temos que estar dentro de um component. E o resto das funções que filtram e tal, precisam desses dados retornados pelo hook. Daria, pra colocar essas funções fora e passar os valores por parametro pra elas. Mas como elas só estão sendo declaradas, e não executadas, elas prejudicam o render? Eu não tenho informação de que seja um problema, mas ficarei atento pra mais informações dessa situação.
+Pq as funções todas de /destino precisam ta dentro do function component? 
+Pq pra gente ter acesso ao Hook useSelection, temos que estar dentro de um component. E o resto das funções que filtram e tal, precisam desses dados retornados pelo hook. Daria, pra colocar essas funções fora e passar os valores por parametro pra elas. Mas como elas só estão sendo declaradas, e não executadas, elas prejudicam o render? Eu não tenho informação de que seja um problema, mas ficarei atento pra mais informações dessa situação.
 
 Agora tenho que pensar onde é melhor de filtrar as regiões e subregiões, e tb, como filtrar elas?
 
 Em que circunstância o allTravels vai ser relevante? Elas não vão se misturar nunca a princípio, e se eu começar a ter que filtrar esse array em muitos lugares é melhor ter fetches separados realmente. Só que, pensando agora, se eu for criar fetch getTravelsOfCategory, eu tb vou criar getRegionsOfCategory e etc etc, vai separar tudo. Talvez seja melhor filtrar msm.
 
-FEITO ENTÃO PIÁ! Até que deu uma dor de cabeça, mas ta aí. Se algum dia olhar o código e se perguntar pq que essa porra ta assim, bom acho que lendo aí descobre. Em resumo: A gente (eu no caso) quer só pegar pra cada página as regiões e subregiões que por ventura contenham viagens dentro da categoria que a página está servindo. 1) Filtramos de todas as viagens um array só com as viagens desse tipo. Filtramos em seguida tb as regiões, usando um filter que dentro filtra (inception) todas as viagens que pertencem a essa região, isso é útil pq ganhamos aqui o travelCount novo dessa região, e serviu elegantemente pra retornar esse mesmo valor como cláusula do filter (se for 0 é = false hehe). Pra subregiões mesma lógica.
+FEITO ENTÃO PIÁ! Até que deu uma dor de cabeça, mas ta aí. Se algum dia olhar o código e se perguntar pq que isso ta assim, bom acho que lendo aí descobre. Em resumo: A gente (eu no caso) quer só pegar pra cada página as regiões e subregiões que por ventura contenham viagens dentro da categoria que a página está servindo. 1) Filtramos de todas as viagens um array só com as viagens desse tipo. Filtramos em seguida tb as regiões, usando um filter que dentro filtra (inception) todas as viagens que pertencem a essa região, isso é útil pq ganhamos aqui o travelCount novo dessa região, e serviu elegantemente pra retornar esse mesmo valor como cláusula do filter (se for 0 é = false hehe). Pra subregiões mesma lógica.
 
 Agora os 'data' são importados lá em cima só para serem usados pela função staticProps. O componente em si usa os props que essa função passa (os valores de data mas filtrados).
 
 #### Note to self: yep, time to learn useEffect and such...
 
-#### Mais um dia, mais umas coisas possivelmente estranhas sendo feitas
-
-Aqui é sobre o hadleClick do DesktopNavigation. Primeiro o problema já se sabe né, como temos dois links no menu que levam para a mesma página só que seções diferentes, e essas seções são controladas por state, precisamos que esses links do menu não só levem à página como a levem com seus respectivos states selecionados. Então, precisei adicionar um onClick condicional no menu. Como na vdd ele é meio independente e essa condicional também não depende de quem ta chamando ele, pq ele ta em todas as páginas da mesma forma, eu tive que adicionar a info de id da região no pr´´oprio dataFile do menu, lá ficou como selecRegion daí a 'ação' que esse item do menu tb efetua, mas o handler inteiro da situação ficou pro próprio componente desktopNavigation, ele que teve que importar os context e fazer digamos a parte lógica disso.
+Aqui é sobre o hadleClick do DesktopNavigation. Primeiro o problema já se sabe né, como temos dois links no menu que levam para a mesma página só que seções diferentes, e essas seções são controladas por state, precisamos que esses links do menu não só levem à página como a levem com seus respectivos states selecionados. Então, precisei adicionar um onClick condicional no menu. Como na vdd ele é meio independente e essa condicional também não depende de quem ta chamando ele, pq ele ta em todas as páginas da mesma forma, eu tive que adicionar a info de id da região no próprio dataFile do menu, lá ficou como selecRegion daí a 'ação' que esse item do menu tb efetua, mas o handler inteiro da situação ficou pro próprio componente desktopNavigation, ele que teve que importar os context e fazer digamos a parte lógica disso.
 
 #### Sobre ter path absolute no projeto
 
@@ -82,7 +81,7 @@ https://www.sanity.io/docs/webhooks
 
 ### Descontos agendados
 
-ok a merda com datas e static generation, é que eu to checando a validade do desconto na hora do BUILD
+ok o problema com datas e static generation, é que eu to checando a validade do desconto na hora do BUILD
 e aí vai estar lá, sei lá data de inicio da promoção daqui um dia, blz vamos colocar como false aqui por enquanto, mas e aí
 não rola nenhum build até o outro dia, vai continuar como false, a promoção não vai aparecer....
 se não pode ser no build, quando pode ser esse check? se for em real-time, tipo, dentro do componente... vai fazer o cálculo a cada re-render, não? vai tornar a página o quão pesada?
@@ -105,7 +104,7 @@ E da mesma forma o contador né, funciona em cima da mesma lógica. Hum, eu acho
 
 Como eu criei a possibilidade de 'regiões personalizadas', que são como condições pra filtro ou junção de destinos, eles tb vão ter sua página assim como a categoria.
 O layout da página vai ser igual... Então sei lá, por enquanto pelo menos eu to vendo como melhor jeito colocar os dois na mesma.
-Até pq anaisando mais fundo o 'customRegions' meio que é uma categoria com mais opções. Deveriam ser duas páginas separadas? O next parece não ter uma expectativa
+Até pq analisando mais fundo o 'customRegions' meio que é uma categoria com mais opções. Deveriam ser duas páginas separadas? O next parece não ter uma expectativa
 nativa de que esse modelo seja seguido, pq eu passando tanto categorias quanto customRegions do getStaticPaths pro getStaticProps, ele não deixa passar nenhum outro dado dentro dos params. Então não tenho como passar nenhum indicador de que é um ou outro. Por isso coloquei esses prefixos, pra tirar eles no getStaticProps e saber como lidar de forma diferente com cada um
 
 nope... não é assim que funciona. Assim ele somente vai pré-gerar páginas com o slug de cat-cruzeiro, por exemplo. É, isso não me ajuda em nada.
